@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class URLSessionNetworkService: NetworkServiceProtocol {
+final class URLSessionNetworkService: NetworkServiceProtocol, @unchecked Sendable {
     private let session: URLSession
     private let decoder: JSONDecoder
 

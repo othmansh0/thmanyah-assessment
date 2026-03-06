@@ -9,3 +9,5 @@
 5. Localization: All user-facing strings go through String Catalog (Localizable.xcstrings). Use `String(localized:)` in Swift code. Arabic is the source language.
 
 6. Images: Use KFImage from Kingfisher for all remote images. Never use AsyncImage. Provide placeholder and failure states for every image load.
+
+7. Git workflow: BEFORE writing any code for a new day's tasks, create the feature branch first (e.g. `git checkout -b feature/day-N-name` from `develop`). At every COMMIT CHECKPOINT in the plan, STOP, propose the commit message, and wait for explicit user confirmation before committing. Never commit or push without confirmation.
