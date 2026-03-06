@@ -5,7 +5,7 @@
 //  Created by Othman Shahrouri on 07/03/2026.
 //
 
-enum ContentType: String, Sendable {
+enum ContentType: String {
     case podcast
     case episode
     case audioArticle = "audio_article"

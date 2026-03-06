@@ -5,7 +5,7 @@
 //  Created by Othman Shahrouri on 07/03/2026.
 //
 
-struct AudioBookDTO: Decodable, Sendable {
+struct AudioBookDTO: Decodable {
     let audiobookId: String
     let name: String
     let avatarUrl: String?

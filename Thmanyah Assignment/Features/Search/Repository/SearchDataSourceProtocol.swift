@@ -5,6 +5,6 @@
 //  Created by Othman Shahrouri on 07/03/2026.
 //
 
-protocol SearchDataSourceProtocol: Sendable {
+protocol SearchDataSourceProtocol {
     func search(query: String) async throws -> [SectionDTO]
 }

@@ -53,7 +53,6 @@
       }
     },
     "filter_audio_articles" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -70,7 +69,6 @@
       }
     },
     "filter_books" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -87,7 +85,6 @@
       }
     },
     "filter_for_you" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -104,7 +101,6 @@
       }
     },
     "filter_podcasts" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -121,7 +117,6 @@
       }
     },
     "greeting_evening" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -138,7 +133,6 @@
       }
     },
     "greeting_morning" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

@@ -5,7 +5,7 @@
 //  Created by Othman Shahrouri on 07/03/2026.
 //
 
-enum SectionType: Sendable {
+enum SectionType {
     case queue
     case bigSquare
     case square

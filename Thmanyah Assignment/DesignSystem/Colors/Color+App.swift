@@ -34,6 +34,8 @@ extension Color {
 
     static let colorError   = Color("red400")
     static let colorSuccess = Color("green500")
+
+    static let chipActiveBackground = Color("chipActiveBackground")
 }
 
 extension UIColor {

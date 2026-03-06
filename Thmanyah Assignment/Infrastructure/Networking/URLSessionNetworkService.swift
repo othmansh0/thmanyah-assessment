@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class URLSessionNetworkService: NetworkServiceProtocol, @unchecked Sendable {
+final class URLSessionNetworkService: NetworkServiceProtocol {
     private let session: URLSession
     private let decoder: JSONDecoder
 
@@ -17,7 +17,7 @@ final class URLSessionNetworkService: NetworkServiceProtocol, @unchecked Sendabl
         self.decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
 
-    func request<T: Decodable & Sendable>(_ endpoint: any APIEndpoint) async throws -> T {
+    func request<T: Decodable>(_ endpoint: any APIEndpoint) async throws -> T {
         guard let url = endpoint.url else {
             throw NetworkError.invalidURL
         }

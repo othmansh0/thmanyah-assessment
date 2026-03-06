@@ -5,7 +5,7 @@
 //  Created by Othman Shahrouri on 07/03/2026.
 //
 
-struct PodcastDTO: Decodable, Sendable {
+struct PodcastDTO: Decodable {
     let podcastId: String
     let name: String
     let avatarUrl: String?

@@ -6,14 +6,14 @@
 //
 
 // ContentItemDTO holds a typed DTO per content type, produced by SectionDTO's custom decoder.
-enum ContentItemDTO: Sendable {
+enum ContentItemDTO {
     case podcast(PodcastDTO)
     case episode(EpisodeDTO)
     case audioBook(AudioBookDTO)
     case audioArticle(AudioArticleDTO)
 }
 
-struct SectionDTO: Sendable {
+struct SectionDTO {
     let name: String
     let type: String
     let contentType: String?

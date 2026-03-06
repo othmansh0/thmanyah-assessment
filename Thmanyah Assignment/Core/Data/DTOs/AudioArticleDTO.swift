@@ -5,7 +5,7 @@
 //  Created by Othman Shahrouri on 07/03/2026.
 //
 
-struct AudioArticleDTO: Decodable, Sendable {
+struct AudioArticleDTO: Decodable {
     let articleId: String
     let name: String
     let avatarUrl: String?
