@@ -1,0 +1,11 @@
+1. Follow the architecture defined in the plan: Clean Architecture with Use Cases, Repositories, and Data Sources. ViewModels are @MainActor ObservableObjects. Domain models are Sendable value types.
+
+2. Use the design system tokens exclusively: AppFont for typography (Font.appFont(.token) / UIFont.appFont(.token)), Color.tokenName for colors. Never use raw font names, hardcoded colors, or system fonts in feature code.
+
+3. SwiftUI views use the `.task` + `@State` ViewModel pattern to resolve @Environment dependencies. The outer view holds `@State private var viewModel: XViewModel?` and creates it in `.task`. The inner content view uses `@ObservedObject`.
+
+4. All new protocols must be Sendable. All DTOs and domain models must be structs conforming to Sendable. Use structured concurrency (async/await, Task) — no Combine, no DispatchQueue.
+
+5. Localization: All user-facing strings go through String Catalog (Localizable.xcstrings). Use `String(localized:)` in Swift code. Arabic is the source language.
+
+6. Images: Use KFImage from Kingfisher for all remote images. Never use AsyncImage. Provide placeholder and failure states for every image load.
