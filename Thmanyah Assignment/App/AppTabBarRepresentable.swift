@@ -15,9 +15,9 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
         let tabBar = UITabBarController()
 
         let homeView = NavigationStack {
-            HomePlaceholderView()
+            HomeScreen()
         }
-        .environment(\.homeContainer, container.home)
+        .environment(\.homeContainer, container.features.home)
 
         let homeVC = UIHostingController(rootView: homeView)
         let homeImage = UIImage(named: "home")?.withRenderingMode(.alwaysTemplate)
@@ -30,7 +30,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
         let searchView = NavigationStack {
             SearchPlaceholderView()
         }
-        .environment(\.searchContainer, container.search)
+        .environment(\.searchContainer, container.features.search)
 
         let searchVC = UIHostingController(rootView: searchView)
         let searchImage = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
@@ -40,7 +40,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
             selectedImage: searchImage
         )
 
-        let settingsVC = SettingsViewController()
+        let settingsVC = SettingsViewController(container: container.features.settings)
         let settingsNav = UINavigationController(rootViewController: settingsVC)
         let settingsImage = UIImage(named: "setting")?.withRenderingMode(.alwaysTemplate)
         settingsNav.tabBarItem = UITabBarItem(
@@ -73,21 +73,6 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
 
         tabBar.tabBar.standardAppearance = appearance
         tabBar.tabBar.scrollEdgeAppearance = appearance
-    }
-}
-
-private struct HomePlaceholderView: View {
-    var body: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "house.fill")
-                .font(.system(size: 48))
-                .foregroundStyle(Color.iconPrimary)
-            Text(String(localized: "tab_home"))
-                .font(.appTitle)
-                .foregroundStyle(Color.labelPrimary)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.backgroundPrimary)
     }
 }
 

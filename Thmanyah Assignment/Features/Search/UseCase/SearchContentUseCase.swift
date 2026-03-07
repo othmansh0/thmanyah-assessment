@@ -1,0 +1,14 @@
+//
+//  SearchContentUseCase.swift
+//  Thmanyah Assignment
+//
+//  Created by Othman Shahrouri on 07/03/2026.
+//
+
+struct SearchContentUseCase: SearchContentUseCaseProtocol {
+    let repository: SearchRepositoryProtocol
+
+    func execute(query: String) async throws -> [Section] {
+        try await repository.search(query: query)
+    }
+}
