@@ -1,5 +1,5 @@
 //
-//  DTOMappers.swift
+//  ContentItemDTOMappers.swift
 //  Thmanyah Assignment
 //
 //  Created by Othman Shahrouri on 07/03/2026.
@@ -7,29 +7,16 @@
 
 import Foundation
 
-private let iso8601Formatter: ISO8601DateFormatter = {
-    let f = ISO8601DateFormatter()
-    f.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-    return f
+private let contentItemISO8601Formatter: ISO8601DateFormatter = {
+    let dateFormatter = ISO8601DateFormatter()
+    dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+    return dateFormatter
 }()
 
-private func parseDate(_ string: String?) -> Date? {
+private func parseContentItemDate(_ string: String?) -> Date? {
     guard let string else { return nil }
-    return iso8601Formatter.date(from: string)
+    return contentItemISO8601Formatter.date(from: string)
         ?? ISO8601DateFormatter().date(from: string)
-}
-
-extension SectionDTO {
-    func toDomain() -> Section {
-        Section(
-            id: String(order),
-            title: name,
-            type: SectionType(apiValue: type),
-            contentType: contentType.flatMap { ContentType(rawValue: $0) },
-            order: order,
-            items: items.map { $0.toDomain() }
-        )
-    }
 }
 
 extension ContentItemDTO {
@@ -64,7 +51,7 @@ extension EpisodeDTO {
             imageURL: avatarUrl.flatMap { URL(string: $0) },
             duration: duration,
             audioURL: audioUrl.flatMap { URL(string: $0) },
-            releaseDate: parseDate(releaseDate),
+            releaseDate: parseContentItemDate(releaseDate),
             podcastName: podcastName,
             podcastId: podcastId
         )
@@ -80,7 +67,7 @@ extension AudioBookDTO {
             authorName: authorName,
             duration: duration,
             language: language,
-            releaseDate: parseDate(releaseDate)
+            releaseDate: parseContentItemDate(releaseDate)
         )
     }
 }
@@ -93,16 +80,7 @@ extension AudioArticleDTO {
             imageURL: avatarUrl.flatMap { URL(string: $0) },
             authorName: authorName,
             duration: duration,
-            releaseDate: parseDate(releaseDate)
-        )
-    }
-}
-
-extension PaginationDTO {
-    func toDomain() -> Pagination {
-        Pagination(
-            totalPages: totalPages,
-            hasNextPage: nextPage != nil
+            releaseDate: parseContentItemDate(releaseDate)
         )
     }
 }

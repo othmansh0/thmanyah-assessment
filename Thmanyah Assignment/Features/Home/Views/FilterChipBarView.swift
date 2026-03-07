@@ -2,28 +2,18 @@
 //  FilterChipBarView.swift
 //  Thmanyah Assignment
 //
+//  Created by Othman Shahrouri on 07/03/2026.
+//
 
 import SwiftUI
 
 struct FilterChipBarView: View {
-    @Binding var selectedFilter: ContentType?
-
-    private struct Chip {
-        let label: String
-        let filter: ContentType?
-    }
-
-    private let chips: [Chip] = [
-        Chip(label: String(localized: "filter_for_you"),       filter: nil),
-        Chip(label: String(localized: "filter_podcasts"),      filter: .podcast),
-        Chip(label: String(localized: "filter_audio_articles"),filter: .audioArticle),
-        Chip(label: String(localized: "filter_books"),         filter: .audioBook),
-    ]
+    @Binding var selectedFilter: HomeFilterChip
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
-                ForEach(chips, id: \.label) { chip in
+                ForEach(HomeFilterChip.allCases) { chip in
                     chipButton(chip)
                 }
             }
@@ -33,12 +23,12 @@ struct FilterChipBarView: View {
     }
 
     @ViewBuilder
-    private func chipButton(_ chip: Chip) -> some View {
-        let isActive = chip.filter == selectedFilter
+    private func chipButton(_ chip: HomeFilterChip) -> some View {
+        let isActive = chip == selectedFilter
         Button {
-            selectedFilter = chip.filter
+            selectedFilter = chip
         } label: {
-            Text(chip.label)
+            Text(chip.localizedTitle)
                 .font(.chipLabel)
                 .foregroundStyle(isActive ? Color.labelOnSolid : Color.labelSecondary)
                 .padding(.horizontal, 16)

@@ -2,46 +2,44 @@
 //  HomeHeaderView.swift
 //  Thmanyah Assignment
 //
+//  Created by Othman Shahrouri on 07/03/2026.
+//
 
 import SwiftUI
 
 struct HomeHeaderView: View {
+    private var placeholderUserName: String {
+        String(localized: "home_header_placeholder_name")
+    }
+
     var body: some View {
-        HStack {
-            HStack(spacing: 12) {
-                VStack(alignment: .leading, spacing: 2) {
-                    HStack(spacing: 6) {
-                        Text(greeting)
-                            .font(.appTitle)
-                            .foregroundStyle(Color.labelPrimary)
-                        Circle()
-                            .fill(Color.colorSuccess)
-                            .frame(width: 8, height: 8)
-                    }
+        HStack(spacing: 10) {
+            Circle()
+                .fill(Color.colorSuccess)
+                .frame(width: 40, height: 40)
+                .overlay {
+                    Image(systemName: "person.fill")
+                        .foregroundStyle(Color.labelOnSolid)
+                        .font(.system(size: 18))
                 }
-                Button(action: {}) {
-                    Image(systemName: "gearshape")
-                        .foregroundStyle(Color.iconPrimary)
-                        .font(.system(size: 20))
-                }
+
+            HStack(spacing: 6) {
+                Text(String(format: String(localized: "home_header_greeting"), greeting, placeholderUserName))
+                    .font(.sectionTitle)
+                    .foregroundStyle(Color.labelPrimary)
+                    .lineLimit(1)
+
+                Image(systemName: "star.hexagon.fill")
+                    .foregroundStyle(Color.playButtonBackground)
+                    .font(.system(size: 16))
             }
 
             Spacer()
 
-            HStack(spacing: 12) {
-                Button(action: {}) {
-                    Image(systemName: "bell")
-                        .foregroundStyle(Color.iconPrimary)
-                        .font(.system(size: 20))
-                }
-                Circle()
-                    .fill(Color.colorSuccess)
-                    .frame(width: 36, height: 36)
-                    .overlay {
-                        Image(systemName: "person.fill")
-                            .foregroundStyle(Color.labelOnSolid)
-                            .font(.system(size: 16))
-                    }
+            Button(action: {}) {
+                Image(systemName: "bell")
+                    .foregroundStyle(Color.iconPrimary)
+                    .font(.system(size: 24))
             }
         }
         .padding(.horizontal, 16)

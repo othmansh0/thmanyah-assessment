@@ -7,5 +7,5 @@
 
 struct Pagination {
     let totalPages: Int
-    let hasNextPage: Bool
+    let nextPage: Int?
 }

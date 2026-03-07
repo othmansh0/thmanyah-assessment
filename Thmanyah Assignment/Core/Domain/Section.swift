@@ -5,7 +5,7 @@
 //  Created by Othman Shahrouri on 07/03/2026.
 //
 
-struct Section: Identifiable {
+struct Section: Identifiable, Equatable {
     let id: String
     let title: String
     let type: SectionType

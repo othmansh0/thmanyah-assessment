@@ -30,6 +30,9 @@ final class URLSessionNetworkService: NetworkServiceProtocol {
         do {
             (data, response) = try await session.data(for: urlRequest)
         } catch {
+            if (error as? URLError)?.code == .cancelled {
+                throw CancellationError()
+            }
             throw NetworkError.networkFailure(error)
         }
 

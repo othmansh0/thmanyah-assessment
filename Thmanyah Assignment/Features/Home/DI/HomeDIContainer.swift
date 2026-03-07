@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-struct HomeDIContainer {
+protocol HomeDIContainerProtocol {
+    var fetchSectionsUseCase: FetchHomeSectionsUseCaseProtocol { get }
+}
+
+struct HomeDIContainer: HomeDIContainerProtocol {
     let fetchSectionsUseCase: FetchHomeSectionsUseCaseProtocol
 
     init(networkService: NetworkServiceProtocol) {

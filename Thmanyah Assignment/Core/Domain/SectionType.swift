@@ -5,7 +5,7 @@
 //  Created by Othman Shahrouri on 07/03/2026.
 //
 
-enum SectionType {
+enum SectionType: Equatable {
     case queue
     case bigSquare
     case square

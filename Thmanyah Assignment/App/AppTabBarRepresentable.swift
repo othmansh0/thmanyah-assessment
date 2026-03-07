@@ -15,7 +15,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
         let tabBar = UITabBarController()
 
         let homeView = NavigationStack {
-            HomePlaceholderView()
+            HomeScreen()
         }
         .environment(\.homeContainer, container.home)
 
@@ -73,21 +73,6 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
 
         tabBar.tabBar.standardAppearance = appearance
         tabBar.tabBar.scrollEdgeAppearance = appearance
-    }
-}
-
-private struct HomePlaceholderView: View {
-    var body: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "house.fill")
-                .font(.system(size: 48))
-                .foregroundStyle(Color.iconPrimary)
-            Text(String(localized: "tab_home"))
-                .font(.appTitle)
-                .foregroundStyle(Color.labelPrimary)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.backgroundPrimary)
     }
 }
 

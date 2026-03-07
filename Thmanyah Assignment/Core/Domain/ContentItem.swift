@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ContentItem: Identifiable {
+enum ContentItem: Identifiable, Equatable {
     case podcast(Podcast)
     case episode(Episode)
     case audioBook(AudioBook)
@@ -15,15 +15,15 @@ enum ContentItem: Identifiable {
 
     var id: String {
         switch self {
-        case .podcast(let p): return p.id
-        case .episode(let e): return e.id
-        case .audioBook(let b): return b.id
-        case .audioArticle(let a): return a.id
+        case .podcast(let podcast): return podcast.id
+        case .episode(let episode): return episode.id
+        case .audioBook(let audioBook): return audioBook.id
+        case .audioArticle(let audioArticle): return audioArticle.id
         }
     }
 }
 
-struct Podcast: Identifiable {
+struct Podcast: Identifiable, Equatable {
     let id: String
     let title: String
     let imageURL: URL?
@@ -32,7 +32,7 @@ struct Podcast: Identifiable {
     let language: String?
 }
 
-struct Episode: Identifiable {
+struct Episode: Identifiable, Equatable {
     let id: String
     let title: String
     let imageURL: URL?
@@ -43,7 +43,7 @@ struct Episode: Identifiable {
     let podcastId: String
 }
 
-struct AudioBook: Identifiable {
+struct AudioBook: Identifiable, Equatable {
     let id: String
     let title: String
     let imageURL: URL?
@@ -53,7 +53,7 @@ struct AudioBook: Identifiable {
     let releaseDate: Date?
 }
 
-struct AudioArticle: Identifiable {
+struct AudioArticle: Identifiable, Equatable {
     let id: String
     let title: String
     let imageURL: URL?
