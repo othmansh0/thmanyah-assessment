@@ -14,13 +14,13 @@ struct TwoLinesGridRowView: View {
         VStack(spacing: 0) {
             SectionHeaderView(title: section.title) {
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .medium))
+                    .font(.chipLabel)
                     .foregroundStyle(Color.labelSecondary)
                     .flipsForRightToLeftLayoutDirection(true)
             }
 
-            ForEach(section.entries) {
-                QueueItemView(item: $0.content)
+            ForEach(section.entries) { entry in
+                QueueItemView(item: entry)
                 Divider()
                     .padding(.leading, 16)
             }

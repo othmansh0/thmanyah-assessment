@@ -21,8 +21,8 @@ struct BigSquareRowView: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    ForEach(section.entries) {
-                        BigSquareCardView(item: $0.content)
+                    ForEach(section.entries) { entry in
+                        BigSquareCardView(item: entry)
                     }
                 }
                 .padding(.horizontal, 16)

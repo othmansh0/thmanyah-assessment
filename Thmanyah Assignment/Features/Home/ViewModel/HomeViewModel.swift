@@ -30,6 +30,7 @@ final class HomeViewModel: ObservableObject {
     private var allSectionDisplayModels: [ContentSectionDisplayModel] = []
 
     private let container: HomeDIContainerProtocol
+    private let sectionMapper = SectionToDisplayMapper()
 
     init(container: HomeDIContainerProtocol) {
         self.container = container
@@ -128,23 +129,6 @@ final class HomeViewModel: ObservableObject {
         from sections: [Section],
         startingAt offset: Int
     ) -> [ContentSectionDisplayModel] {
-        sections.enumerated().map { index, section in
-            let sectionID = ContentSectionDisplayID(feedIndex: offset + index)
-            return ContentSectionDisplayModel(
-                id: sectionID,
-                title: section.title,
-                type: section.type,
-                contentType: section.contentType,
-                entries: section.items.enumerated().map { itemIndex, item in
-                    ContentSectionItemDisplayModel(
-                        id: ContentSectionItemDisplayID(
-                            sectionID: sectionID,
-                            itemIndex: itemIndex
-                        ),
-                        content: item
-                    )
-                }
-            )
-        }
+        sectionMapper.map(sections, startingAt: offset)
     }
 }

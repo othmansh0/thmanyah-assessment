@@ -19,6 +19,7 @@ extension Font {
     static var bodySecondary: Font { appFont(.bodySecondary) }
     static var appCaption: Font { appFont(.caption) }
     static var captionMedium: Font { appFont(.captionMedium) }
+    static var captionSemiBold: Font { appFont(.captionSemiBold) }
     static var chipLabel: Font { appFont(.chipLabel) }
     static var buttonLabel: Font { appFont(.buttonLabel) }
 }

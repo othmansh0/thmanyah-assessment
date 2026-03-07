@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "ar",
   "strings" : {
-    "•" : {
-
-    },
     "app_error_decoding_failure" : {
       "localizations" : {
         "ar" : {

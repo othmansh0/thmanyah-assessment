@@ -9,78 +9,70 @@ import SwiftUI
 import Kingfisher
 
 struct QueueItemView: View {
-    let item: ContentItem
+    let item: ContentSectionItemDisplayModel
 
     var body: some View {
         HStack(spacing: 12) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(title)
-                    .font(.cardTitle)
-                    .foregroundStyle(Color.labelPrimary)
-                    .lineLimit(2)
+            actionColumn
 
-                HStack(spacing: 6) {
-                    Text(durationText)
-                        .font(.appCaption)
-                        .foregroundStyle(Color.labelSecondary)
+            centerColumn
+                .frame(maxWidth: .infinity, alignment: .leading)
 
-                    if let date = releaseDateText {
-                        Text("•")
-                            .font(.appCaption)
-                            .foregroundStyle(Color.labelSecondary)
-                        Text(date)
-                            .font(.appCaption)
-                            .foregroundStyle(Color.labelSecondary)
-                    }
-                }
-            }
-
-            Spacer()
-
-            KFImage(imageURL)
+            KFImage(item.imageURL)
                 .placeholder { Color.backgroundSecondary }
                 .resizable()
                 .aspectRatio(1, contentMode: .fill)
-                .frame(width: 64, height: 64)
+                .frame(width: 72, height: 72)
                 .clipShape(.rect(cornerRadius: 8))
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
     }
 
-    private var imageURL: URL? {
-        switch item {
-        case .podcast(let podcast): return podcast.imageURL
-        case .episode(let episode): return episode.imageURL
-        case .audioBook(let audioBook): return audioBook.imageURL
-        case .audioArticle(let audioArticle): return audioArticle.imageURL
+    private var actionColumn: some View {
+        VStack(spacing: 14) {
+            Image(systemName: "list.bullet")
+                .font(.system(size: 16, weight: .medium))
+                .foregroundStyle(Color.iconPrimary)
+
+            Image(systemName: "ellipsis")
+                .font(.system(size: 16, weight: .medium))
+                .foregroundStyle(Color.labelSecondary)
         }
     }
 
-    private var title: String {
-        switch item {
-        case .podcast(let podcast): return podcast.title
-        case .episode(let episode): return episode.title
-        case .audioBook(let audioBook): return audioBook.title
-        case .audioArticle(let audioArticle): return audioArticle.title
+    private var centerColumn: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            if let date = item.releaseDateText {
+                Text(date)
+                    .font(.appCaption)
+                    .foregroundStyle(Color.labelSecondary)
+            }
+
+            Text(item.title)
+                .font(.cardTitle)
+                .foregroundStyle(Color.labelPrimary)
+                .lineLimit(2)
+
+            Spacer(minLength: 4)
+
+            durationPill
         }
     }
 
-    private var durationText: String {
-        switch item {
-        case .podcast(let podcast): return podcast.duration.formattedDuration
-        case .episode(let episode): return episode.duration.formattedDuration
-        case .audioBook(let audioBook): return audioBook.duration.formattedDuration
-        case .audioArticle(let audioArticle): return audioArticle.duration.formattedDuration
+    private var durationPill: some View {
+        HStack(spacing: 4) {
+            Image(systemName: "play.fill")
+                .font(.system(size: 9, weight: .bold))
+            Text(item.durationText)
+                .font(.captionMedium)
         }
-    }
-
-    private var releaseDateText: String? {
-        switch item {
-        case .podcast: return nil
-        case .episode(let episode): return episode.releaseDate?.relativeFormatted
-        case .audioBook(let audioBook): return audioBook.releaseDate?.relativeFormatted
-        case .audioArticle(let audioArticle): return audioArticle.releaseDate?.relativeFormatted
-        }
+        .foregroundStyle(Color.labelPrimary)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(
+            Capsule()
+                .fill(Color.labelPrimary.opacity(0.12))
+        )
     }
 }

@@ -24,6 +24,7 @@ struct AppFont {
     static let bodySecondary = AppFont(name: regular, size: 14, textStyle: .subheadline)
     static let caption = AppFont(name: regular, size: 12, textStyle: .caption)
     static let captionMedium = AppFont(name: medium, size: 12, textStyle: .caption)
+    static let captionSemiBold = AppFont(name: semiBold, size: 12, textStyle: .caption)
     static let tabBarItem = AppFont(name: medium, size: 10, textStyle: .caption2)
     static let chipLabel = AppFont(name: medium, size: 14, textStyle: .subheadline)
     static let buttonLabel = AppFont(name: semiBold, size: 16, textStyle: .body)
