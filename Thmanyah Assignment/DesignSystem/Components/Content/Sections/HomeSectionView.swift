@@ -15,11 +15,11 @@ struct HomeSectionView: View {
         case .queue:
             QueueSectionView(section: section)
         case .bigSquare:
-            BigSquareRowView(section: section)
+            BigSquareSectionView(section: section)
         case .square:
-            SquareRowView(section: section)
+            SquareSectionView(section: section)
         case .twoLinesGrid:
-            TwoLinesGridRowView(section: section)
+            TwoLinesGridSectionView(section: section)
         }
     }
 }

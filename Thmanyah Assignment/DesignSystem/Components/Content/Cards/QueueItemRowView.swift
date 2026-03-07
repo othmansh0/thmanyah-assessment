@@ -1,5 +1,5 @@
 //
-//  QueueItemView.swift
+//  QueueItemRowView.swift
 //  Thmanyah Assignment
 //
 //  Created by Othman Shahrouri on 07/03/2026.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Kingfisher
 
-struct QueueItemView: View {
+struct QueueItemRowView: View {
     let item: ContentSectionItemDisplayModel
 
     var body: some View {

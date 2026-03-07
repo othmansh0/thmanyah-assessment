@@ -1,5 +1,5 @@
 //
-//  TwoLinesGridRowView.swift
+//  TwoLinesGridSectionView.swift
 //  Thmanyah Assignment
 //
 //  Created by Othman Shahrouri on 07/03/2026.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TwoLinesGridRowView: View {
+struct TwoLinesGridSectionView: View {
     let section: ContentSectionDisplayModel
 
     var body: some View {
@@ -20,7 +20,7 @@ struct TwoLinesGridRowView: View {
             }
 
             ForEach(section.entries) { entry in
-                QueueItemView(item: entry)
+                QueueItemRowView(item: entry)
                 Divider()
                     .padding(.leading, 16)
             }
