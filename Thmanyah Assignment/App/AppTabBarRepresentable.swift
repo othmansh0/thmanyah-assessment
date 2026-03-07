@@ -17,7 +17,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
         let homeView = NavigationStack {
             HomeScreen()
         }
-        .environment(\.homeContainer, container.home)
+        .environment(\.homeContainer, container.features.home)
 
         let homeVC = UIHostingController(rootView: homeView)
         let homeImage = UIImage(named: "home")?.withRenderingMode(.alwaysTemplate)
@@ -30,7 +30,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
         let searchView = NavigationStack {
             SearchPlaceholderView()
         }
-        .environment(\.searchContainer, container.search)
+        .environment(\.searchContainer, container.features.search)
 
         let searchVC = UIHostingController(rootView: searchView)
         let searchImage = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
@@ -40,7 +40,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
             selectedImage: searchImage
         )
 
-        let settingsVC = SettingsViewController()
+        let settingsVC = SettingsViewController(container: container.features.settings)
         let settingsNav = UINavigationController(rootViewController: settingsVC)
         let settingsImage = UIImage(named: "setting")?.withRenderingMode(.alwaysTemplate)
         settingsNav.tabBarItem = UITabBarItem(

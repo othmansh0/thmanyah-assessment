@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-struct SearchDIContainer {
+protocol SearchDIContainerProtocol {
+    var searchContentUseCase: SearchContentUseCaseProtocol { get }
+}
+
+struct SearchDIContainer: SearchDIContainerProtocol {
     let searchContentUseCase: SearchContentUseCaseProtocol
 
     init(networkService: NetworkServiceProtocol) {
@@ -18,11 +22,11 @@ struct SearchDIContainer {
 }
 
 private struct SearchDIContainerKey: EnvironmentKey {
-    static let defaultValue = SearchDIContainer(networkService: URLSessionNetworkService())
+    static let defaultValue: any SearchDIContainerProtocol = StubSearchDIContainer()
 }
 
 extension EnvironmentValues {
-    var searchContainer: SearchDIContainer {
+    var searchContainer: any SearchDIContainerProtocol {
         get { self[SearchDIContainerKey.self] }
         set { self[SearchDIContainerKey.self] = newValue }
     }

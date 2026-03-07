@@ -8,6 +8,18 @@
 import UIKit
 
 final class SettingsViewController: UIViewController {
+    private let container: SettingsDIContainer
+
+    init(container: SettingsDIContainer) {
+        self.container = container
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("Use init(container:)")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundPrimary

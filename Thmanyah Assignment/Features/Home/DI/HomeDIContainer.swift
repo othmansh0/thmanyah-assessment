@@ -22,11 +22,11 @@ struct HomeDIContainer: HomeDIContainerProtocol {
 }
 
 private struct HomeDIContainerKey: EnvironmentKey {
-    static let defaultValue = HomeDIContainer(networkService: URLSessionNetworkService())
+    static let defaultValue: any HomeDIContainerProtocol = StubHomeDIContainer()
 }
 
 extension EnvironmentValues {
-    var homeContainer: HomeDIContainer {
+    var homeContainer: any HomeDIContainerProtocol {
         get { self[HomeDIContainerKey.self] }
         set { self[HomeDIContainerKey.self] = newValue }
     }

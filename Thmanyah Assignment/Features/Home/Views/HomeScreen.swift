@@ -16,10 +16,10 @@ struct HomeScreen: View {
 }
 
 private struct HomeScreenContent: View {
-    let container: HomeDIContainer
+    let container: any HomeDIContainerProtocol
     @StateObject private var viewModel: HomeViewModel
 
-    init(container: HomeDIContainer) {
+    init(container: any HomeDIContainerProtocol) {
         self.container = container
         _viewModel = StateObject(wrappedValue: HomeViewModel(container: container))
     }
