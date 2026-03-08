@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BigSquareSectionView: View {
     let section: ContentSectionDisplayModel
+    @Environment(\.contentItemTapped) private var onItemTapped
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -23,7 +24,10 @@ struct BigSquareSectionView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 14) {
                     ForEach(section.entries) { entry in
-                        BigSquareCardView(item: entry)
+                        BigSquareCardView(
+                            item: entry,
+                            onTap: onItemTapped.map { action in { action(entry) } }
+                        )
                     }
                 }
                 .padding(.horizontal, 16)

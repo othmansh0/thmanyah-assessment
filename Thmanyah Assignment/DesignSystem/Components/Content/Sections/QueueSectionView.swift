@@ -24,6 +24,7 @@ private enum QueueSectionLayout {
 
 struct QueueSectionView: View {
     let section: ContentSectionDisplayModel
+    @Environment(\.contentItemTapped) private var onItemTapped
 
     @State private var currentIndex = 0
 
@@ -42,21 +43,35 @@ struct QueueSectionView: View {
                     .foregroundStyle(Color.labelPrimary)
             }
 
-            HStack(spacing: QueueSectionLayout.sectionSpacing) {
-                cardDeckRegion
-                    .frame(width: QueueSectionLayout.cardDeckWidth, alignment: .trailing)
-                    .padding(.leading, QueueSectionLayout.contentPadding)
+            queueContent
+                .padding(QueueSectionLayout.contentPadding)
+                .frame(height: QueueSectionLayout.containerHeight)
+                .background(
+                    Color.profileCardBackground,
+                    in: RoundedRectangle(cornerRadius: QueueSectionLayout.containerCornerRadius)
+                )
+                .padding(.horizontal, QueueSectionLayout.outerHorizontalPadding)
+        }
+    }
 
-                episodeInfoRegion
-                    .frame(maxWidth: .infinity)
-            }
-            .padding(QueueSectionLayout.contentPadding)
-            .frame(height: QueueSectionLayout.containerHeight)
-            .background(
-                Color.profileCardBackground,
-                in: RoundedRectangle(cornerRadius: QueueSectionLayout.containerCornerRadius)
-            )
-            .padding(.horizontal, QueueSectionLayout.outerHorizontalPadding)
+    @ViewBuilder
+    private var queueContent: some View {
+        if let onItemTapped, let entry = currentEntry {
+            Button { onItemTapped(entry) } label: { queueContentRegion }
+                .buttonStyle(.plain)
+        } else {
+            queueContentRegion
+        }
+    }
+
+    private var queueContentRegion: some View {
+        HStack(spacing: QueueSectionLayout.sectionSpacing) {
+            cardDeckRegion
+                .frame(width: QueueSectionLayout.cardDeckWidth, alignment: .trailing)
+                .padding(.leading, QueueSectionLayout.contentPadding)
+
+            episodeInfoRegion
+                .frame(maxWidth: .infinity)
         }
     }
 

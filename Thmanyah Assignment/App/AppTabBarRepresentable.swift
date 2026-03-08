@@ -14,10 +14,8 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UITabBarController {
         let tabBar = UITabBarController()
 
-        let homeView = NavigationStack {
-            HomeScreen()
-        }
-        .environment(\.homeContainer, container.features.home)
+        let homeView = HomeScreen()
+            .environment(\.homeContainer, container.features.home)
 
         let homeVC = UIHostingController(rootView: homeView)
         let homeImage = UIImage(named: "home")?.withRenderingMode(.alwaysTemplate)

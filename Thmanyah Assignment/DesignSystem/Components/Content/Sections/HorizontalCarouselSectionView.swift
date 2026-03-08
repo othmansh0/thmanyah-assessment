@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HorizontalCarouselSectionView: View {
     let section: ContentSectionDisplayModel
+    @Environment(\.contentItemTapped) private var onItemTapped
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -24,10 +25,13 @@ struct HorizontalCarouselSectionView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 16) {
                         ForEach(section.entries) { entry in
-                            ProfileContentCardView(item: entry)
-                                .frame(width: geometry.size.width - 56)
-                                .background(Color.profileCardBackground)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                            ProfileContentCardView(
+                                item: entry,
+                                onTap: onItemTapped.map { action in { action(entry) } }
+                            )
+                            .frame(width: geometry.size.width - 56)
+                            .background(Color.profileCardBackground)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
                     }
                     .padding(.horizontal, 16)

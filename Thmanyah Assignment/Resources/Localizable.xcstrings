@@ -11,38 +11,6 @@
         }
       }
     },
-    "accessibility_play_duration" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تشغيل، %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Play, %@"
-          }
-        }
-      }
-    },
-    "accessibility_play_queue" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تشغيل أو إضافة إلى الطابور"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Play or add to queue"
-          }
-        }
-      }
-    },
     "accessibility_more_options" : {
       "localizations" : {
         "ar" : {
@@ -71,6 +39,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notifications"
+          }
+        }
+      }
+    },
+    "accessibility_play_duration" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تشغيل، %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play, %@"
+          }
+        }
+      }
+    },
+    "accessibility_play_queue" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تشغيل أو إضافة إلى الطابور"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play or add to queue"
           }
         }
       }
@@ -135,6 +135,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "An unexpected error occurred"
+          }
+        }
+      }
+    },
+    "Detail: %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التفاصيل: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail: %@"
           }
         }
       }

@@ -52,7 +52,7 @@ private struct HomeSectionsFeedView: View {
                             .id(emptyScrollID)
                     } else {
                         ForEach(viewModel.filteredSections) { section in
-                            HomeSectionView(section: section)
+                            SectionLayoutView(section: section)
                                 .id(section.id)
                         }
 

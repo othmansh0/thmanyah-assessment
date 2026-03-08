@@ -10,6 +10,7 @@ import Kingfisher
 
 struct BigSquareCardView: View {
     let item: ContentSectionItemDisplayModel
+    var onTap: (() -> Void)?
 
     private let cardSize = CGSize(width: 220, height: 160)
     private let cornerRadius: CGFloat = 10
@@ -18,7 +19,17 @@ struct BigSquareCardView: View {
     @ScaledMetric(relativeTo: .body) private var bottomPadding: CGFloat = 16
     @ScaledMetric(relativeTo: .caption) private var contentSpacing: CGFloat = 6
 
+    @ViewBuilder
     var body: some View {
+        if let onTap {
+            Button(action: onTap) { cardContent }
+                .buttonStyle(.plain)
+        } else {
+            cardContent
+        }
+    }
+
+    private var cardContent: some View {
         imageSection
             .frame(width: cardSize.width, height: cardSize.height)
             .overlay { overlayGradient }
