@@ -35,14 +35,12 @@ struct QueueSectionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             SectionHeaderView(title: section.title) {
-                Image(systemName: "chevron.right")
+                Image(systemName: "chevron.forward")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 20, height: 20)
+                    .frame(width: 12, height: 12)
                     .foregroundStyle(Color.labelPrimary)
-                    .flipsForRightToLeftLayoutDirection(true)
             }
-            .padding(.horizontal, QueueSectionLayout.outerHorizontalPadding)
 
             HStack(spacing: QueueSectionLayout.sectionSpacing) {
                 cardDeckRegion
@@ -55,7 +53,7 @@ struct QueueSectionView: View {
             .padding(QueueSectionLayout.contentPadding)
             .frame(height: QueueSectionLayout.containerHeight)
             .background(
-                Color.backgroundSecondary,
+                Color.profileCardBackground,
                 in: RoundedRectangle(cornerRadius: QueueSectionLayout.containerCornerRadius)
             )
             .padding(.horizontal, QueueSectionLayout.outerHorizontalPadding)
@@ -89,24 +87,21 @@ struct QueueSectionView: View {
             if let entry = currentEntry {
                 Text(entry.title)
                     .font(.cardTitle)
-                    .multilineTextAlignment(.leading)
                     .lineLimit(3)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .id("title-\(currentIndex)")
                     .transition(.opacity)
 
                 HStack(spacing: QueueSectionLayout.metadataSpacing) {
-                    if let relativeDate = entry.releaseDateText {
-                        Text(relativeDate)
-                            .font(.appCaption)
-                            .foregroundStyle(Color.labelSecondary)
-                    }
                     Text(entry.durationText)
                         .font(.captionSemiBold)
                         .foregroundStyle(Color.red600)
+                    if let relativeDate = entry.releaseDateText {
+                        Text(relativeDate)
+                            .font(.appCaption)
+                            .foregroundStyle(Color.labelSecondaryMuted)
+                    }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .id("meta-\(currentIndex)")
+                .frame(maxWidth: .infinity, alignment: .leading) 
                 .transition(.opacity)
             }
 
@@ -132,5 +127,6 @@ struct QueueSectionView: View {
                 .background(Circle().fill(Color.playButtonBackground))
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(String(format: String(localized: "accessibility_play_duration"), currentEntry?.title ?? ""))
     }
 }

@@ -26,6 +26,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
             image: homeImage,
             selectedImage: homeImage
         )
+        homeVC.tabBarItem.accessibilityLabel = String(localized: "tab_home")
 
         let searchView = NavigationStack {
             SearchPlaceholderView()
@@ -39,6 +40,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
             image: searchImage,
             selectedImage: searchImage
         )
+        searchVC.tabBarItem.accessibilityLabel = String(localized: "tab_search")
 
         let settingsVC = SettingsViewController(container: container.features.settings)
         let settingsNav = UINavigationController(rootViewController: settingsVC)
@@ -48,6 +50,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
             image: settingsImage,
             selectedImage: settingsImage
         )
+        settingsNav.tabBarItem.accessibilityLabel = String(localized: "tab_settings")
 
         tabBar.viewControllers = [homeVC, searchVC, settingsNav]
 

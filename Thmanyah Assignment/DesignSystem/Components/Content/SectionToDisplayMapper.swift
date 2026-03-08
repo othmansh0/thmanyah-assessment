@@ -13,20 +13,37 @@ struct SectionToDisplayMapper {
         startingAt offset: Int
     ) -> [ContentSectionDisplayModel] {
         sections.enumerated().map { index, section in
-            let sectionID = ContentSectionDisplayID(feedIndex: offset + index)
-            return ContentSectionDisplayModel(
-                id: sectionID,
-                title: section.title,
-                type: section.type,
-                contentType: section.contentType,
-                entries: section.items.enumerated().map { itemIndex, item in
-                    mapItem(
-                        item,
-                        sectionID: sectionID,
-                        itemIndex: itemIndex
-                    )
-                }
-            )
+            mapSection(section, feedIndex: offset + index)
+        }
+    }
+
+    private func mapSection(_ section: Section, feedIndex: Int) -> ContentSectionDisplayModel {
+        let sectionID = ContentSectionDisplayID(feedIndex: feedIndex)
+        return ContentSectionDisplayModel(
+            id: sectionID,
+            sectionId: section.id,
+            title: section.title,
+            layoutType: resolveLayout(type: section.type, contentType: section.contentType),
+            entries: section.items.enumerated().map { itemIndex, item in
+                mapItem(
+                    item,
+                    sectionID: sectionID,
+                    itemIndex: itemIndex
+                )
+            }
+        )
+    }
+
+    private func resolveLayout(type: SectionType, contentType: ContentType?) -> DisplayLayoutType {
+        switch type {
+        case .queue:
+            return .stackedCarousel
+        case .bigSquare:
+            return .bigSquare
+        case .square:
+            return .square
+        case .twoLinesGrid:
+            return contentType == .audioBook ? .horizontalCarousel : .twoRowGrid
         }
     }
 
@@ -54,7 +71,8 @@ struct SectionToDisplayMapper {
                 durationText: podcast.duration.formattedDuration,
                 releaseDateText: nil,
                 credit: episodesLabel,
-                compactSubtitle: episodesLabel
+                compactSubtitle: episodesLabel,
+                description: nil
             )
 
         case .episode(let episode):
@@ -66,7 +84,8 @@ struct SectionToDisplayMapper {
                 durationText: duration,
                 releaseDateText: episode.releaseDate?.relativeFormatted,
                 credit: episode.podcastName,
-                compactSubtitle: duration
+                compactSubtitle: duration,
+                description: nil
             )
 
         case .audioBook(let audioBook):
@@ -78,7 +97,8 @@ struct SectionToDisplayMapper {
                 durationText: duration,
                 releaseDateText: audioBook.releaseDate?.relativeFormatted,
                 credit: audioBook.authorName,
-                compactSubtitle: duration
+                compactSubtitle: duration,
+                description: audioBook.description
             )
 
         case .audioArticle(let article):
@@ -90,7 +110,8 @@ struct SectionToDisplayMapper {
                 durationText: duration,
                 releaseDateText: article.releaseDate?.relativeFormatted,
                 credit: article.authorName,
-                compactSubtitle: duration
+                compactSubtitle: duration,
+                description: nil
             )
         }
     }

@@ -35,9 +35,12 @@ extension Color {
 
     static let colorError   = Color("red400")
     static let colorSuccess = Color("green500")
+    static let accentGreen  = Color("accentGreen")
 
     static let chipActiveBackground = Color("chipActiveBackground")
     static let playPillBackground = Color("playPillBackground")
+    static let mediaContainerBackground = Color("mediaContainerBackground")
+    static let profileCardBackground = Color("profileCardBackground")
 }
 
 extension UIColor {

@@ -10,6 +10,7 @@ struct AudioBookDTO: Decodable {
     let name: String
     let avatarUrl: String?
     let authorName: String
+    let description: String?
     let duration: Int
     let language: String?
     let releaseDate: String?

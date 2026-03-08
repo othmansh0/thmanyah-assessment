@@ -11,97 +11,63 @@ import Kingfisher
 struct BigSquareCardView: View {
     let item: ContentSectionItemDisplayModel
 
-    private let cardSize: CGFloat = 160
-    /// Scales with Dynamic Type so pill padding/spacing grows when user increases text size. Uses .caption because the pill content (duration) uses caption-sized font.
-    @ScaledMetric(relativeTo: .caption) private var contentSpacing: CGFloat = 4
-    @ScaledMetric(relativeTo: .caption) private var pillPaddingH: CGFloat = 8
-    @ScaledMetric(relativeTo: .caption) private var pillPaddingV: CGFloat = 6
-    
-    private var secondaryText: String {
-        item.releaseDateText ?? item.credit
-    }
-    
+    private let cardSize = CGSize(width: 220, height: 160)
+    private let cornerRadius: CGFloat = 10
+
+    @ScaledMetric(relativeTo: .body) private var contentPadding: CGFloat = 12
+    @ScaledMetric(relativeTo: .body) private var bottomPadding: CGFloat = 16
+    @ScaledMetric(relativeTo: .caption) private var contentSpacing: CGFloat = 6
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            imageSection
-            bottomContentSection
-        }
-        .frame(width: cardSize)
-        .clipShape(.rect(cornerRadius: 12))
+        imageSection
+            .frame(width: cardSize.width, height: cardSize.height)
+            .overlay { overlayGradient }
+            .overlay(alignment: .bottomLeading) { overlayContent }
+            .clipShape(.rect(cornerRadius: cornerRadius))
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(item.title), \(item.credit)")
     }
 
     private var imageSection: some View {
         KFImage(item.imageURL)
             .placeholder { Color.backgroundSecondary }
             .resizable()
-            .aspectRatio(1, contentMode: .fill)
-            .clipShape(.rect(cornerRadius: 12))
+            .aspectRatio(contentMode: .fill)
     }
 
-    @ViewBuilder
-    private var bottomContentSection: some View {
+    private var overlayGradient: some View {
+        LinearGradient(
+            colors: [
+                .clear,
+                Color.backgroundScrim.opacity(0.4),
+                Color.backgroundScrim
+            ],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+
+    private var overlayContent: some View {
         VStack(alignment: .leading, spacing: contentSpacing) {
             titleLabel
-            bottomMetadataRow
+            subtitleLabel
         }
+        .padding(.horizontal, contentPadding)
+        .padding(.top, contentPadding)
+        .padding(.bottom, bottomPadding)
     }
 
     private var titleLabel: some View {
         Text(item.title)
             .font(.cardTitle)
-            .foregroundStyle(Color.labelPrimary)
+            .foregroundStyle(Color.labelOnSolid)
             .lineLimit(2)
-            .multilineTextAlignment(.leading)
-            .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    @ViewBuilder
-    private var bottomMetadataRow: some View {
-        HStack(spacing: 8) {
-            playButtonPill
-            
-            if !secondaryText.isEmpty {
-                secondaryTextLabel
-            }
-            Spacer(minLength: 8)
-        }
-    }
-
-    private var secondaryTextLabel: some View {
-        Text(secondaryText)
+    private var subtitleLabel: some View {
+        Text(item.credit)
             .font(.appCaption)
-            .foregroundStyle(Color.labelSecondaryMuted)
+            .foregroundStyle(Color.labelOnSolid.opacity(0.85))
             .lineLimit(1)
     }
-
-    private var playButtonPill: some View {
-        Button {
-
-        } label: {
-            HStack(spacing: 6) {
-                Image(systemName: "play.fill")
-                    .font(.system(size: 12, weight: .medium))
-                Text(item.durationText)
-                    .font(.captionMedium)
-                    .fixedSize()
-            }
-            .foregroundStyle(Color.labelOnSolid)
-            .padding(.horizontal, pillPaddingH)
-            .padding(.vertical, pillPaddingV)
-            .background(Capsule().fill(Color.playPillBackground))
-        }
-        .buttonStyle(.plain)
-        .accessibilityLabel(String(format: String(localized: "accessibility_play_duration"), item.durationText))
-    }
 }
-
-#if DEBUG
-struct BigSquareCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        BigSquareCardView(item: .previewAudioBook)
-            .padding()
-            .background(Color.backgroundPrimary)
-            .previewLayout(.sizeThatFits)
-    }
-}
-#endif

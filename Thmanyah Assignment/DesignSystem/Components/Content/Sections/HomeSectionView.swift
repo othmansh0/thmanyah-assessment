@@ -11,15 +11,17 @@ struct HomeSectionView: View {
     let section: ContentSectionDisplayModel
 
     var body: some View {
-        switch section.type {
-        case .queue:
+        switch section.layoutType {
+        case .stackedCarousel:
             QueueSectionView(section: section)
         case .bigSquare:
             BigSquareSectionView(section: section)
         case .square:
             SquareSectionView(section: section)
-        case .twoLinesGrid:
+        case .twoRowGrid:
             TwoLinesGridSectionView(section: section)
+        case .horizontalCarousel:
+            HorizontalCarouselSectionView(section: section)
         }
     }
 }

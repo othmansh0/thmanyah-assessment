@@ -65,6 +65,7 @@ extension AudioBookDTO {
             title: name,
             imageURL: avatarUrl.flatMap { URL(string: $0) },
             authorName: authorName,
+            description: description,
             duration: duration,
             language: language,
             releaseDate: parseContentItemDate(releaseDate)

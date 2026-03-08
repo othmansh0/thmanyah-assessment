@@ -48,6 +48,7 @@ struct AudioBook: Identifiable, Equatable {
     let title: String
     let imageURL: URL?
     let authorName: String
+    let description: String?
     let duration: Int
     let language: String?
     let releaseDate: Date?

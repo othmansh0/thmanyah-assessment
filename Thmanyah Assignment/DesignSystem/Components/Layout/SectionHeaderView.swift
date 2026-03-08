@@ -11,14 +11,14 @@ struct SectionHeaderView<Content: View>: View {
     private let title: AttributedString
     @ViewBuilder private let trailing: Content
 
-    init(title: String, @ViewBuilder trailing: () -> Content) {
+    init(title: String, @ViewBuilder trailingContent: () -> Content) {
         self.title = AttributedString(title)
-        self.trailing = trailing()
+        self.trailing = trailingContent()
     }
 
-    init(title: AttributedString, @ViewBuilder trailing: () -> Content) {
+    init(title: AttributedString, @ViewBuilder trailingContent: () -> Content) {
         self.title = title
-        self.trailing = trailing()
+        self.trailing = trailingContent()
     }
 
     var body: some View {
@@ -31,26 +31,5 @@ struct SectionHeaderView<Content: View>: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
-    }
-}
-
-#Preview {
-    VStack {
-        SectionHeaderView(title: "التوصيات") {
-            Image(systemName: "chevron.right")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 20, height: 20)
-                .foregroundStyle(Color.labelPrimary)
-                .flipsForRightToLeftLayoutDirection(true)
-        }
-        SectionHeaderView(title: "الأكثر استماعاً") {
-            Text("عرض الكل")
-                .font(.appCaption)
-                .foregroundStyle(Color.labelSecondary)
-        }
-        SectionHeaderView(title: "مقالات") {
-            EmptyView()
-        }
     }
 }
