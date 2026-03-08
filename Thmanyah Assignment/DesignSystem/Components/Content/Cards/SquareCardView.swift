@@ -37,3 +37,17 @@ struct SquareCardView: View {
         .frame(width: size)
     }
 }
+
+#if DEBUG
+struct SquareCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        HStack(spacing: 12) {
+            SquareCardView(item: .previewPodcast)
+            SquareCardView(item: .previewAudioArticle)
+        }
+        .padding()
+        .background(Color.backgroundPrimary)
+        .previewLayout(.sizeThatFits)
+    }
+}
+#endif

@@ -19,6 +19,7 @@ extension Color {
 
     static let labelPrimary   = Color("neutral900")
     static let labelSecondary = Color("neutral400")
+    static let labelSecondaryMuted = Color("labelSecondaryMuted")
     static let labelTertiary  = Color("labelTertiary")
     static let labelOnSolid   = Color("neutral50")
 
@@ -36,6 +37,7 @@ extension Color {
     static let colorSuccess = Color("green500")
 
     static let chipActiveBackground = Color("chipActiveBackground")
+    static let playPillBackground = Color("playPillBackground")
 }
 
 extension UIColor {

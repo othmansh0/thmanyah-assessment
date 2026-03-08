@@ -36,8 +36,10 @@ struct QueueSectionView: View {
         VStack(alignment: .leading, spacing: 12) {
             SectionHeaderView(title: section.title) {
                 Image(systemName: "chevron.right")
-                    .font(.chipLabel)
-                    .foregroundStyle(Color.labelSecondary)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+                    .foregroundStyle(Color.labelPrimary)
                     .flipsForRightToLeftLayoutDirection(true)
             }
             .padding(.horizontal, QueueSectionLayout.outerHorizontalPadding)
@@ -56,7 +58,6 @@ struct QueueSectionView: View {
                 Color.backgroundSecondary,
                 in: RoundedRectangle(cornerRadius: QueueSectionLayout.containerCornerRadius)
             )
-            .clipShape(RoundedRectangle(cornerRadius: QueueSectionLayout.containerCornerRadius))
             .padding(.horizontal, QueueSectionLayout.outerHorizontalPadding)
         }
     }

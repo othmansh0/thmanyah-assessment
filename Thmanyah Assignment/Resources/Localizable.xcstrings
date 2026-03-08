@@ -1,6 +1,32 @@
 {
   "sourceLanguage" : "ar",
   "strings" : {
+    "%@, %@" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
+    "accessibility_play_duration" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تشغيل، %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play, %@"
+          }
+        }
+      }
+    },
     "app_error_decoding_failure" : {
       "localizations" : {
         "ar" : {

@@ -14,8 +14,10 @@ struct TwoLinesGridSectionView: View {
         VStack(spacing: 0) {
             SectionHeaderView(title: section.title) {
                 Image(systemName: "chevron.right")
-                    .font(.chipLabel)
-                    .foregroundStyle(Color.labelSecondary)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+                    .foregroundStyle(Color.labelPrimary)
                     .flipsForRightToLeftLayoutDirection(true)
             }
 

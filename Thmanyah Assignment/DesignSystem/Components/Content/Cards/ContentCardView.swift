@@ -38,3 +38,13 @@ struct ContentCardView: View {
         .padding(.vertical, 8)
     }
 }
+
+#if DEBUG
+struct ContentCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentCardView(item: .previewAudioArticle)
+            .background(Color.backgroundPrimary)
+            .previewLayout(.sizeThatFits)
+    }
+}
+#endif

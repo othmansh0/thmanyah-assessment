@@ -44,6 +44,7 @@ struct SectionToDisplayMapper {
         case .podcast(let podcast):
             let episodesLabel = String(
                 format: String(localized: "episodes_count"),
+                locale: Locale.currentWithWesternNumerals,
                 podcast.episodeCount
             )
             return ContentSectionItemDisplayModel(

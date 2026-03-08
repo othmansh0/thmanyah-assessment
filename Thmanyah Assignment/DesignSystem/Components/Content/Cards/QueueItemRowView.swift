@@ -76,3 +76,16 @@ struct QueueItemRowView: View {
         )
     }
 }
+
+#if DEBUG
+struct QueueItemRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack(spacing: 0) {
+            QueueItemRowView(item: .previewEpisodeRow)
+            QueueItemRowView(item: .previewAudioBookRow)
+        }
+        .background(Color.backgroundPrimary)
+        .previewLayout(.sizeThatFits)
+    }
+}
+#endif

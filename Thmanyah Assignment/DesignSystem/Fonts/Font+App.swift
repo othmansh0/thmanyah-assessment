@@ -14,6 +14,7 @@ extension Font {
 
     static var appTitle: Font { appFont(.appTitle) }
     static var sectionTitle: Font { appFont(.sectionTitle) }
+    static var sectionHeader: Font { appFont(.sectionHeader) }
     static var cardTitle: Font { appFont(.cardTitle) }
     static var bodyPrimary: Font { appFont(.bodyPrimary) }
     static var bodySecondary: Font { appFont(.bodySecondary) }

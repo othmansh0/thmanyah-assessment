@@ -19,6 +19,7 @@ struct AppFont {
 
     static let appTitle = AppFont(name: bold, size: 24, textStyle: .title)
     static let sectionTitle = AppFont(name: semiBold, size: 18, textStyle: .headline)
+    static let sectionHeader = AppFont(name: bold, size: 18, textStyle: .headline)
     static let cardTitle = AppFont(name: semiBold, size: 14, textStyle: .subheadline)
     static let bodyPrimary = AppFont(name: regular, size: 16, textStyle: .body)
     static let bodySecondary = AppFont(name: regular, size: 14, textStyle: .subheadline)
