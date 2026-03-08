@@ -15,7 +15,7 @@ struct HomeHeaderView: View {
     var body: some View {
         HStack(spacing: 10) {
             Circle()
-                .fill(Color.colorSuccess)
+                .fill(Color.accentGreen)
                 .frame(width: 40, height: 40)
                 .overlay {
                     Image(systemName: "person.fill")
@@ -41,6 +41,7 @@ struct HomeHeaderView: View {
                     .foregroundStyle(Color.iconPrimary)
                     .font(.system(size: 24))
             }
+            .accessibilityLabel(String(localized: "accessibility_notifications"))
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
@@ -53,8 +54,4 @@ struct HomeHeaderView: View {
             ? String(localized: "greeting_morning")
             : String(localized: "greeting_evening")
     }
-}
-
-#Preview {
-    HomeHeaderView()
 }

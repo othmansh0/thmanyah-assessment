@@ -6,9 +6,9 @@
 //
 
 extension SectionDTO {
-    func toDomain() -> Section {
+    func toDomain(pageNumber: Int) -> Section {
         Section(
-            id: String(order),
+            id: "\(pageNumber)-\(order)",
             title: name,
             type: SectionType(apiValue: type),
             contentType: contentType.flatMap { ContentType(rawValue: $0) },

@@ -10,6 +10,6 @@ struct SearchRepository: SearchRepositoryProtocol {
 
     func search(query: String) async throws -> [Section] {
         let dtos = try await dataSource.search(query: query)
-        return dtos.map { $0.toDomain() }
+        return dtos.map { $0.toDomain(pageNumber: 1) }
     }
 }

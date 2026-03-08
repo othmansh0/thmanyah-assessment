@@ -43,46 +43,43 @@ struct HomeContentView: View {
 private struct HomeSectionsFeedView: View {
     @EnvironmentObject var viewModel: HomeViewModel
 
-    private let scrollTopID = "homeScrollTop"
+    private let emptyScrollID = "empty"
 
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
                 LazyVStack(spacing: 16) {
-                    scrollTopAnchor
-
                     if viewModel.filteredSections.isEmpty {
                         EmptyStateView(message: String(localized: "empty_no_content"))
                             .padding(.top, 60)
-                    }
+                            .id(emptyScrollID)
+                    } else {
+                        ForEach(viewModel.filteredSections) { section in
+                            HomeSectionView(section: section)
+                                .id(section.id)
+                        }
 
-                    ForEach(viewModel.filteredSections) { section in
-                        HomeSectionView(section: section)
-                    }
+                        if viewModel.hasMorePages {
+                            paginationTrigger
+                        }
 
-                    if viewModel.hasMorePages {
-                        paginationTrigger
-                    }
-
-                    if viewModel.isLoadingNextPage {
-                        paginationFooter
+                        if viewModel.isLoadingNextPage {
+                            paginationFooter
+                        }
                     }
                 }
                 .padding(.bottom, 16)
             }
             .onChange(of: viewModel.selectedFilter) { _ in
                 withAnimation(.easeOut(duration: 0.3)) {
-                    proxy.scrollTo(scrollTopID, anchor: .top)
+                    if let first = viewModel.filteredSections.first {
+                        proxy.scrollTo(first.id, anchor: .top)
+                    } else {
+                        proxy.scrollTo(emptyScrollID, anchor: .top)
+                    }
                 }
             }
         }
-    }
-
-    private var scrollTopAnchor: some View {
-        Color.clear
-            .frame(height: 0)
-            .id(scrollTopID)
-            .accessibilityHidden(true)
     }
 
     private var paginationFooter: some View {

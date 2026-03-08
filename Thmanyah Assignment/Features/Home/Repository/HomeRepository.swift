@@ -13,7 +13,7 @@ struct HomeRepository: HomeRepositoryProtocol {
     func fetchSections(page: Int) async throws -> ([Section], Pagination) {
         do {
             let response = try await dataSource.fetchSections(page: page)
-            let sections = response.sections.map { $0.toDomain() }
+            let sections = response.sections.map { $0.toDomain(pageNumber: page) }
             let pagination = response.pagination.toDomain()
             return (sections, pagination)
         } catch is CancellationError {

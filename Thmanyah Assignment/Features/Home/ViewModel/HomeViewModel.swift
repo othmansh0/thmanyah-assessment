@@ -27,9 +27,10 @@ final class HomeViewModel: ObservableObject {
     private var totalPages = 1
     private var nextPage: Int?
     private var isFetching = false
-    private var allSectionDisplayModels: [ContentSectionDisplayModel] = []
+    private var displayModelCache: [String: ContentSectionDisplayModel] = [:]
 
     private let container: HomeDIContainerProtocol
+    private let sectionMapper = SectionToDisplayMapper()
 
     init(container: HomeDIContainerProtocol) {
         self.container = container
@@ -50,7 +51,8 @@ final class HomeViewModel: ObservableObject {
             nextPage = pagination.nextPage
             hasMorePages = currentPage < totalPages
             state = .loaded(sections)
-            allSectionDisplayModels = makeDisplaySections(from: sections, startingAt: 0)
+            displayModelCache = [:]
+            _ = makeDisplaySections(from: sections, startingAt: 0)
             recomputeFilteredSections()
         } catch {
             let appError = (error as? AppError) ?? .unknown
@@ -79,16 +81,12 @@ final class HomeViewModel: ObservableObject {
 
         do {
             let (newSections, pagination) = try await container.fetchSectionsUseCase.execute(page: requestedPage)
-            let displaySectionOffset = allSectionDisplayModels.count
             currentPage = requestedPage
             totalPages = max(pagination.totalPages, currentPage)
             nextPage = pagination.nextPage
             hasMorePages = currentPage < totalPages
             state = .loaded(current + newSections)
-            allSectionDisplayModels += makeDisplaySections(
-                from: newSections,
-                startingAt: displaySectionOffset
-            )
+            _ = makeDisplaySections(from: newSections, startingAt: displayModelCache.count)
             recomputeFilteredSections()
         } catch is CancellationError {
             isLoadingNextPage = false
@@ -107,44 +105,34 @@ final class HomeViewModel: ObservableObject {
     }
 
     private func recomputeFilteredSections() {
-        guard case .loaded = state else {
+        guard case .loaded(let sections) = state else {
             filteredSections = []
             return
         }
 
-        let selectedContentType = selectedFilter.contentType
-        let nextFilteredSections: [ContentSectionDisplayModel]
-        if let filter = selectedContentType {
-            nextFilteredSections = allSectionDisplayModels.filter { $0.contentType == filter }
+        let filtered: [Section]
+        if let filter = selectedFilter.contentType {
+            filtered = sections.filter { $0.contentType == filter }
         } else {
-            nextFilteredSections = allSectionDisplayModels
+            filtered = sections
         }
 
-        guard filteredSections != nextFilteredSections else { return }
-        filteredSections = nextFilteredSections
+        let next = filtered.compactMap { displayModelCache[$0.id] }
+        guard filteredSections != next else { return }
+        filteredSections = next
     }
 
     private func makeDisplaySections(
         from sections: [Section],
         startingAt offset: Int
     ) -> [ContentSectionDisplayModel] {
-        sections.enumerated().map { index, section in
-            let sectionID = ContentSectionDisplayID(feedIndex: offset + index)
-            return ContentSectionDisplayModel(
-                id: sectionID,
-                title: section.title,
-                type: section.type,
-                contentType: section.contentType,
-                entries: section.items.enumerated().map { itemIndex, item in
-                    ContentSectionItemDisplayModel(
-                        id: ContentSectionItemDisplayID(
-                            sectionID: sectionID,
-                            itemIndex: itemIndex
-                        ),
-                        content: item
-                    )
-                }
-            )
+        let uncached = sections.filter { displayModelCache[$0.id] == nil }
+        let mapped = sectionMapper.map(uncached, startingAt: offset)
+        var mappedIndex = 0
+        for section in sections where displayModelCache[section.id] == nil {
+            displayModelCache[section.id] = mapped[mappedIndex]
+            mappedIndex += 1
         }
+        return sections.compactMap { displayModelCache[$0.id] }
     }
 }
