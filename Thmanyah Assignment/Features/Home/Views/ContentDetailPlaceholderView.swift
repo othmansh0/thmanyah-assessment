@@ -13,7 +13,7 @@ struct ContentDetailPlaceholderView: View {
     var body: some View {
         VStack(spacing: 16) {
             Image(systemName: "doc.text")
-                .font(.system(size: 48))
+                .font(.iconXLarge)
                 .foregroundStyle(Color.iconPrimary)
 
             Text(String(format: String(localized: "Detail: %@"), id))

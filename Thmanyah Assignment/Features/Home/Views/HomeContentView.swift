@@ -39,13 +39,14 @@ struct HomeContentView: View {
 
 private struct HomeSectionsFeedView: View {
     @EnvironmentObject var viewModel: HomeViewModel
+    @ScaledMetric(relativeTo: .body) private var sectionSpacing: CGFloat = 16
 
     private let emptyScrollID = "empty"
 
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
-                LazyVStack(spacing: 16) {
+                LazyVStack(spacing: sectionSpacing) {
                     if viewModel.filteredSections.isEmpty {
                         EmptyStateView(message: String(localized: "empty_no_content"))
                             .padding(.top, 60)

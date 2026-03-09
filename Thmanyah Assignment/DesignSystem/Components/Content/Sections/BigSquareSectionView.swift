@@ -15,9 +15,7 @@ struct BigSquareSectionView: View {
         VStack(alignment: .leading, spacing: 0) {
             SectionHeaderView(title: section.title) {
                 Image(systemName: "chevron.forward")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 12, height: 12)
+                    .font(.chipLabel)
                     .foregroundStyle(Color.labelPrimary)
             }
 

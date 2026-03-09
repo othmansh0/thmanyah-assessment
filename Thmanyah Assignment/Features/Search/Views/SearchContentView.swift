@@ -59,7 +59,7 @@ struct SearchContentView: View {
     private var idleView: some View {
         VStack(spacing: 16) {
             Image(systemName: "magnifyingglass")
-                .font(.system(size: 48))
+                .font(.iconXLarge)
                 .foregroundStyle(Color.labelSecondary)
             Text(String(localized: "search_start"))
                 .font(.bodyPrimary)

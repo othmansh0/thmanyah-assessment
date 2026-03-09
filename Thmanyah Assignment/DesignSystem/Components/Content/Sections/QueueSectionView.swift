@@ -37,9 +37,7 @@ struct QueueSectionView: View {
         VStack(alignment: .leading, spacing: 12) {
             SectionHeaderView(title: section.title) {
                 Image(systemName: "chevron.forward")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 12, height: 12)
+                    .font(.chipLabel)
                     .foregroundStyle(Color.labelPrimary)
             }
 
@@ -83,7 +81,7 @@ struct QueueSectionView: View {
                         .fill(Color.backgroundAccented)
                         .overlay(
                             Image(systemName: "headphones")
-                                .font(.system(size: 28))
+                                .font(.iconLarge)
                                 .foregroundStyle(Color.iconPrimary.opacity(0.4))
                         )
                 }
@@ -133,7 +131,7 @@ struct QueueSectionView: View {
     private var playButton: some View {
         Button(action: {}) {
             Image(systemName: "play.fill")
-                .font(.system(size: 13, weight: .bold))
+                .font(.iconMedium)
                 .foregroundStyle(.white)
                 .frame(
                     width: QueueSectionLayout.playButtonSize,

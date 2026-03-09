@@ -20,7 +20,7 @@ struct HomeHeaderView: View {
                 .overlay {
                     Image(systemName: "person.fill")
                         .foregroundStyle(Color.labelOnSolid)
-                        .font(.system(size: 18))
+                        .font(.sectionTitle)
                 }
 
             HStack(spacing: 6) {
@@ -31,7 +31,7 @@ struct HomeHeaderView: View {
 
                 Image(systemName: "star.hexagon.fill")
                     .foregroundStyle(Color.playButtonBackground)
-                    .font(.system(size: 16))
+                    .font(.bodyPrimary)
             }
 
             Spacer()
@@ -39,7 +39,7 @@ struct HomeHeaderView: View {
             Button(action: {}) {
                 Image(systemName: "bell")
                     .foregroundStyle(Color.iconPrimary)
-                    .font(.system(size: 24))
+                    .font(.appTitle)
             }
             .accessibilityLabel(String(localized: "accessibility_notifications"))
         }

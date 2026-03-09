@@ -19,7 +19,7 @@ struct AppFont {
 
     static let appTitle = AppFont(name: bold, size: 24, textStyle: .title)
     static let sectionTitle = AppFont(name: semiBold, size: 18, textStyle: .headline)
-    static let sectionHeader = AppFont(name: bold, size: 18, textStyle: .headline)
+    static let sectionHeader = AppFont(name: bold, size: 20, textStyle: .headline)
     static let cardTitle = AppFont(name: semiBold, size: 14, textStyle: .subheadline)
     static let bodyPrimary = AppFont(name: regular, size: 16, textStyle: .body)
     static let bodySecondary = AppFont(name: regular, size: 14, textStyle: .subheadline)
@@ -31,4 +31,10 @@ struct AppFont {
     static let buttonLabel = AppFont(name: semiBold, size: 16, textStyle: .body)
     static let settingsSectionTitle = AppFont(name: regular, size: 17, textStyle: .headline)
     static let settingsCellTitle = AppFont(name: bold, size: 14, textStyle: .subheadline)
+
+    // Icon sizing (SF Symbols scale by font size)
+    static let iconSmall = AppFont(name: bold, size: 9, textStyle: .caption2)
+    static let iconMedium = AppFont(name: bold, size: 13, textStyle: .footnote)
+    static let iconLarge = AppFont(name: medium, size: 28, textStyle: .title)
+    static let iconXLarge = AppFont(name: medium, size: 48, textStyle: .largeTitle)
 }

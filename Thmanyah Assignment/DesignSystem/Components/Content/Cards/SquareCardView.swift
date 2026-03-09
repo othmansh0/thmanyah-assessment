@@ -88,7 +88,7 @@ struct SquareCardView: View {
         Button {} label: {
             HStack(spacing: 6) {
                 Image(systemName: "play.fill")
-                    .font(.system(size: 12, weight: .medium))
+                    .font(.captionMedium)
                 Text(item.durationText)
                     .font(.captionMedium)
                     .fixedSize()
