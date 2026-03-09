@@ -14,10 +14,8 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UITabBarController {
         let tabBar = UITabBarController()
 
-        let homeView = NavigationStack {
-            HomeScreen()
-        }
-        .environment(\.homeContainer, container.features.home)
+        let homeView = HomeScreen()
+            .environment(\.homeContainer, container.features.home)
 
         let homeVC = UIHostingController(rootView: homeView)
         let homeImage = UIImage(named: "home")?.withRenderingMode(.alwaysTemplate)
@@ -28,10 +26,8 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
         )
         homeVC.tabBarItem.accessibilityLabel = String(localized: "tab_home")
 
-        let searchView = NavigationStack {
-            SearchPlaceholderView()
-        }
-        .environment(\.searchContainer, container.features.search)
+        let searchView = SearchScreen()
+            .environment(\.searchContainer, container.features.search)
 
         let searchVC = UIHostingController(rootView: searchView)
         let searchImage = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
@@ -42,7 +38,13 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
         )
         searchVC.tabBarItem.accessibilityLabel = String(localized: "tab_search")
 
-        let settingsVC = SettingsViewController(container: container.features.settings)
+        let settingsVM = SettingsViewModel(
+            userDefaults: container.features.settings.userDefaults,
+            onStyleChange: { [weak tabBar] style in
+                tabBar?.view.window?.overrideUserInterfaceStyle = style
+            }
+        )
+        let settingsVC = SettingsViewController(viewModel: settingsVM)
         let settingsNav = UINavigationController(rootViewController: settingsVC)
         let settingsImage = UIImage(named: "setting")?.withRenderingMode(.alwaysTemplate)
         settingsNav.tabBarItem = UITabBarItem(
@@ -79,18 +81,4 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
     }
 }
 
-private struct SearchPlaceholderView: View {
-    var body: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "magnifyingglass")
-                .font(.system(size: 48))
-                .foregroundStyle(Color.iconPrimary)
-            Text(String(localized: "tab_search"))
-                .font(.appTitle)
-                .foregroundStyle(Color.labelPrimary)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.backgroundPrimary)
-    }
-}
 

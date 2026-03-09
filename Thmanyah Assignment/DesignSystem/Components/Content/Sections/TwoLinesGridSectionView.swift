@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TwoLinesGridSectionView: View {
     let section: ContentSectionDisplayModel
+    @Environment(\.contentItemTapped) private var onItemTapped
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -32,8 +33,11 @@ struct TwoLinesGridSectionView: View {
                     spacing: 12
                 ) {
                     ForEach(section.entries) { entry in
-                        ThumbnailMetadataCardView(item: entry)
-                            .frame(width: geometry.size.width - 48)
+                        ThumbnailMetadataCardView(
+                            item: entry,
+                            onTap: onItemTapped.map { action in { action(entry) } }
+                        )
+                        .frame(width: geometry.size.width - 48)
                     }
                 }
                 .padding(.horizontal, 16)
@@ -41,5 +45,4 @@ struct TwoLinesGridSectionView: View {
         }
         .frame(height: 200)
     }
-
 }

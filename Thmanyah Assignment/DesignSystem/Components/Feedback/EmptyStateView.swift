@@ -13,7 +13,8 @@ struct EmptyStateView: View {
     var body: some View {
         VStack(spacing: 16) {
             Image(systemName: "tray")
-                .font(.system(size: 48))
+                .resizable()
+                .frame(width: 36, height: 36)
                 .foregroundStyle(Color.labelSecondary)
 
             Text(message)

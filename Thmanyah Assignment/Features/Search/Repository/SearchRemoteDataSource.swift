@@ -9,7 +9,9 @@ struct SearchRemoteDataSource: SearchDataSourceProtocol {
     let networkService: NetworkServiceProtocol
 
     func search(query: String) async throws -> [SectionDTO] {
-        // Full implementation in Day 3 once search API response shape is confirmed.
-        fatalError("SearchRemoteDataSource.search not yet implemented")
+        let response: SearchResponseDTO = try await networkService.request(
+            SearchEndpoint.search(query: query)
+        )
+        return response.sections
     }
 }

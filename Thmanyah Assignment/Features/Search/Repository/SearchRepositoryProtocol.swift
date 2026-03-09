@@ -6,5 +6,5 @@
 //
 
 protocol SearchRepositoryProtocol {
-    func search(query: String) async throws -> [Section]
+    func search(query: String) async throws -> [ContentItem]
 }

@@ -18,6 +18,7 @@ struct HomeScreen: View {
 private struct HomeScreenContent: View {
     let container: any HomeDIContainerProtocol
     @StateObject private var viewModel: HomeViewModel
+    @State private var navigationPath = NavigationPath()
 
     init(container: any HomeDIContainerProtocol) {
         self.container = container
@@ -25,8 +26,22 @@ private struct HomeScreenContent: View {
     }
 
     var body: some View {
-        HomeContentView(viewModel: viewModel)
-            .errorAlert(error: $viewModel.alertError)
-            .task { await viewModel.loadSections() }
+        NavigationStack(path: $navigationPath) {
+            HomeContentView(viewModel: viewModel)
+                .environment(\.contentItemTapped) { entry in
+                    navigationPath.append(HomeRoute.from(entry))
+                }
+                .navigationDestination(for: HomeRoute.self) { route in
+                    switch route {
+                    case .podcastDetail(let id),
+                         .episodeDetail(let id),
+                         .audioBookDetail(let id),
+                         .audioArticleDetail(let id):
+                        ContentDetailPlaceholderView(id: id)
+                    }
+                }
+        }
+        .errorAlert(error: $viewModel.alertError)
+        .task { await viewModel.loadSections() }
     }
 }

@@ -32,8 +32,17 @@ struct ContentSectionDisplayModel: Identifiable, Equatable {
     let entries: [ContentSectionItemDisplayModel]
 }
 
+enum DestinationType: Equatable {
+    case podcast
+    case episode
+    case audioBook
+    case article
+}
+
 struct ContentSectionItemDisplayModel: Identifiable, Equatable {
     let id: ContentSectionItemDisplayID
+    let domainId: String
+    let destinationType: DestinationType
     let title: String
     let imageURL: URL?
     let durationText: String

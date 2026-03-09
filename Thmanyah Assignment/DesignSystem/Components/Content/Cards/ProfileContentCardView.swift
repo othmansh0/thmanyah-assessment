@@ -10,6 +10,7 @@ import Kingfisher
 
 struct ProfileContentCardView: View {
     let item: ContentSectionItemDisplayModel
+    var onTap: (() -> Void)?
 
     @ScaledMetric(relativeTo: .body) private var contentPadding: CGFloat = 10
     @ScaledMetric(relativeTo: .body) private var sectionSpacing: CGFloat = 14
@@ -19,14 +20,42 @@ struct ProfileContentCardView: View {
     @ScaledMetric(relativeTo: .body) private var thumbnailSize: CGFloat = 42
     @ScaledMetric(relativeTo: .body) private var mediaPadding: CGFloat = 8
 
+    @ViewBuilder
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            avatarView
-            mainContent
+        if let onTap {
+            Button(action: onTap) { cardContent }
+                .buttonStyle(.plain)
+        } else {
+            cardContent
+        }
+    }
+
+    private var cardContent: some View {
+        VStack(alignment: .leading, spacing: sectionSpacing) {
+            primaryContent
+            mediaDetailsSection
         }
         .padding(contentPadding)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityCardLabel)
+    }
+
+    private var primaryContent: some View {
+        VStack(alignment: .leading, spacing: sectionSpacing) {
+            HStack(alignment: .top, spacing: 12) {
+                avatarView
+                VStack(alignment: .leading, spacing: sectionSpacing) {
+                    nameRow
+                    descriptionSection
+                }
+            }
+        }
+    }
+
+    private var accessibilityCardLabel: String {
+        [item.credit, item.title, item.durationText]
+            .filter { !$0.isEmpty }
+            .joined(separator: ", ")
     }
 
     private var avatarView: some View {
@@ -35,21 +64,6 @@ struct ProfileContentCardView: View {
             .scaledToFit()
             .frame(width: avatarSize, height: avatarSize)
             .foregroundStyle(Color.accentGreen)
-    }
-
-    private var mainContent: some View {
-        VStack(alignment: .leading, spacing: sectionSpacing) {
-            nameRow
-            descriptionSection
-            mediaDetailsSection
-        }
-        
-    }
-
-    private var accessibilityCardLabel: String {
-        [item.credit, item.title, item.durationText]
-            .filter { !$0.isEmpty }
-            .joined(separator: ", ")
     }
 
     private var nameRow: some View {
@@ -91,11 +105,10 @@ struct ProfileContentCardView: View {
                     .font(.appCaption)
                     .foregroundStyle(Color.labelSecondary)
             }
-            
+
             Spacer()
-            
+
             playQueueIcon
-        
         }
         .padding(mediaPadding)
         .background(Color.mediaContainerBackground)

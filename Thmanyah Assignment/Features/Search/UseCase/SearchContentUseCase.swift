@@ -8,7 +8,7 @@
 struct SearchContentUseCase: SearchContentUseCaseProtocol {
     let repository: SearchRepositoryProtocol
 
-    func execute(query: String) async throws -> [Section] {
+    func execute(query: String) async throws -> [ContentItem] {
         try await repository.search(query: query)
     }
 }
