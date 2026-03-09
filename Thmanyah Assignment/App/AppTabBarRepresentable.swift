@@ -20,7 +20,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
         let homeVC = UIHostingController(rootView: homeView)
         let homeImage = UIImage(named: "home")?.withRenderingMode(.alwaysTemplate)
         homeVC.tabBarItem = UITabBarItem(
-            title: nil,
+            title: "",
             image: homeImage,
             selectedImage: homeImage
         )
@@ -32,7 +32,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
         let searchVC = UIHostingController(rootView: searchView)
         let searchImage = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
         searchVC.tabBarItem = UITabBarItem(
-            title: nil,
+            title: "",
             image: searchImage,
             selectedImage: searchImage
         )
@@ -48,7 +48,7 @@ struct AppTabBarRepresentable: UIViewControllerRepresentable {
         let settingsNav = UINavigationController(rootViewController: settingsVC)
         let settingsImage = UIImage(named: "setting")?.withRenderingMode(.alwaysTemplate)
         settingsNav.tabBarItem = UITabBarItem(
-            title: nil,
+            title: "",
             image: settingsImage,
             selectedImage: settingsImage
         )

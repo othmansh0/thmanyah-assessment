@@ -46,7 +46,7 @@ final class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String(localized: "tab_settings")
+        navigationItem.title = String(localized: "tab_settings")
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .backgroundPrimary
         applySnapshot()
