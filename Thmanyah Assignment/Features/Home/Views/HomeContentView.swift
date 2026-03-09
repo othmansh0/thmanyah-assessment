@@ -76,6 +76,7 @@ private struct HomeSectionsFeedView: View {
                     }
                 }
             }
+            .refreshable { await viewModel.loadSections() }
         }
     }
 
