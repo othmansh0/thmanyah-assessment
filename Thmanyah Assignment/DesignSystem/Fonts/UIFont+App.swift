@@ -26,7 +26,6 @@ extension UIFont {
     static var captionMedium: UIFont { appFont(.captionMedium) }
     static var chipLabel: UIFont { appFont(.chipLabel) }
     static var buttonLabel: UIFont { appFont(.buttonLabel) }
-    static var tabBarItem: UIFont { appFont(.tabBarItem) }
     static var settingsSectionTitle: UIFont { appFont(.settingsSectionTitle) }
     static var settingsCellTitle: UIFont { appFont(.settingsCellTitle) }
 }
