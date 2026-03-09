@@ -4,7 +4,7 @@ import XCTest
 final class SectionsResponseDecodingTests: XCTestCase {
 
     func test_decode_givenRealAPIJSON_decodesToValidSections() throws {
-        let data = TestResources.loadHomeSectionsResponse()
+        let data = try TestResources.loadHomeSectionsResponse()
         let decoder = TestResources.snakeCaseDecoder()
 
         let dto = try decoder.decode(SectionsResponseDTO.self, from: data)
@@ -15,7 +15,7 @@ final class SectionsResponseDecodingTests: XCTestCase {
     }
 
     func test_decode_givenRealAPIJSON_sectionTypesAreCorrect() throws {
-        let data = TestResources.loadHomeSectionsResponse()
+        let data = try TestResources.loadHomeSectionsResponse()
         let decoder = TestResources.snakeCaseDecoder()
         let dto = try decoder.decode(SectionsResponseDTO.self, from: data)
 
@@ -28,7 +28,7 @@ final class SectionsResponseDecodingTests: XCTestCase {
     }
 
     func test_decode_givenRealAPIJSON_contentTypesAreCorrect() throws {
-        let data = TestResources.loadHomeSectionsResponse()
+        let data = try TestResources.loadHomeSectionsResponse()
         let decoder = TestResources.snakeCaseDecoder()
         let dto = try decoder.decode(SectionsResponseDTO.self, from: data)
 
@@ -40,7 +40,7 @@ final class SectionsResponseDecodingTests: XCTestCase {
     }
 
     func test_decode_givenRealAPIJSON_allSectionsHaveContent() throws {
-        let data = TestResources.loadHomeSectionsResponse()
+        let data = try TestResources.loadHomeSectionsResponse()
         let decoder = TestResources.snakeCaseDecoder()
         let dto = try decoder.decode(SectionsResponseDTO.self, from: data)
 
@@ -50,7 +50,7 @@ final class SectionsResponseDecodingTests: XCTestCase {
     }
 
     func test_decode_thenMapToDomain_producesValidSections() throws {
-        let data = TestResources.loadHomeSectionsResponse()
+        let data = try TestResources.loadHomeSectionsResponse()
         let decoder = TestResources.snakeCaseDecoder()
         let dto = try decoder.decode(SectionsResponseDTO.self, from: data)
 
