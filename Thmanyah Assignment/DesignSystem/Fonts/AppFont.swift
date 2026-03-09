@@ -29,6 +29,6 @@ struct AppFont {
     static let tabBarItem = AppFont(name: medium, size: 10, textStyle: .caption2)
     static let chipLabel = AppFont(name: medium, size: 14, textStyle: .subheadline)
     static let buttonLabel = AppFont(name: semiBold, size: 16, textStyle: .body)
-    static let settingsRow = AppFont(name: regular, size: 16, textStyle: .body)
-    static let settingsHeader = AppFont(name: semiBold, size: 13, textStyle: .footnote)
+    static let settingsSectionTitle = AppFont(name: regular, size: 17, textStyle: .headline)
+    static let settingsCellTitle = AppFont(name: bold, size: 14, textStyle: .subheadline)
 }

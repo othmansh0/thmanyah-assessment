@@ -47,7 +47,7 @@ struct SectionToDisplayMapper {
         }
     }
 
-    private func mapItem(
+    func mapItem(
         _ item: ContentItem,
         sectionID: ContentSectionDisplayID,
         itemIndex: Int

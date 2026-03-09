@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 extension Color {
     static let gold500 = Color("gold500")
@@ -44,6 +45,7 @@ extension Color {
 }
 
 extension UIColor {
+ 
     static let backgroundPrimary   = UIColor(named: "warm950") ?? .systemBackground
     static let backgroundSecondary = UIColor(named: "warm100") ?? .secondarySystemBackground
     static let backgroundElevated  = UIColor(named: "warm50")  ?? .tertiarySystemBackground
@@ -52,9 +54,11 @@ extension UIColor {
     static let labelSecondary = UIColor(named: "neutral400")  ?? .secondaryLabel
 
     static let separatorPrimary = UIColor(named: "warm300") ?? .separator
+    static let neutral500 = UIColor(named: "neutral500") ?? .separator
 
     static let iconPrimary = UIColor(named: "neutral900") ?? .label
     static let iconAccent  = UIColor(named: "iconAccent") ?? .systemYellow
+    static let gold500 = UIColor(named: "gold500") ?? UIColor(red: 212/255, green: 175/255, blue: 55/255, alpha: 1)
 
     static let ctaSolidBackground = UIColor(named: "ctaSolid") ?? .black
 }

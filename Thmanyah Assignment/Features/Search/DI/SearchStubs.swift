@@ -6,7 +6,7 @@
 //
 
 struct StubSearchContentUseCase: SearchContentUseCaseProtocol {
-    func execute(query: String) async throws -> [Section] {
+    func execute(query: String) async throws -> [ContentItem] {
         []
     }
 }

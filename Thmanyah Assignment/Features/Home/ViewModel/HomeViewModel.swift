@@ -54,6 +54,8 @@ final class HomeViewModel: ObservableObject {
             displayModelCache = [:]
             _ = makeDisplaySections(from: sections, startingAt: 0)
             recomputeFilteredSections()
+        } catch is CancellationError {
+            return
         } catch {
             let appError = (error as? AppError) ?? .unknown
             state = .failed(appError)
