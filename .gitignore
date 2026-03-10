@@ -34,10 +34,3 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
-
-# Cursor plans & agent outputs
-.cursor/
-.cursorrules
-
-# Markdown documentation
-*.md
