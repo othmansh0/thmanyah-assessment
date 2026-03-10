@@ -46,6 +46,7 @@ final class HomeViewModel: ObservableObject {
 
         do {
             let (sections, pagination) = try await container.fetchSectionsUseCase.execute(page: 1)
+            guard !Task.isCancelled else { return }
             currentPage = 1
             totalPages = max(pagination.totalPages, 1)
             nextPage = pagination.nextPage
@@ -83,6 +84,10 @@ final class HomeViewModel: ObservableObject {
 
         do {
             let (newSections, pagination) = try await container.fetchSectionsUseCase.execute(page: requestedPage)
+            guard !Task.isCancelled else {
+                isLoadingNextPage = false
+                return
+            }
             currentPage = requestedPage
             totalPages = max(pagination.totalPages, currentPage)
             nextPage = pagination.nextPage

@@ -12,7 +12,7 @@ struct ThumbnailMetadataCardView: View {
     let item: ContentSectionItemDisplayModel
     var onTap: (() -> Void)?
 
-    private let thumbnailSize: CGFloat = 90
+    @ScaledMetric(relativeTo: .body) private var thumbnailSize: CGFloat = 90
     @ScaledMetric(relativeTo: .caption) private var pillPaddingH: CGFloat = 8
     @ScaledMetric(relativeTo: .caption) private var pillPaddingV: CGFloat = 4
 
@@ -101,7 +101,7 @@ struct ThumbnailMetadataCardView: View {
         Button {} label: {
             HStack(spacing: 4) {
                 Image(systemName: "play.fill")
-                    .font(.system(size: 9, weight: .bold))
+                    .font(.iconSmall)
                 Text(item.durationText)
                     .font(.captionMedium)
                     .fixedSize()

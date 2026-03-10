@@ -10,14 +10,13 @@ import SwiftUI
 struct HorizontalCarouselSectionView: View {
     let section: ContentSectionDisplayModel
     @Environment(\.contentItemTapped) private var onItemTapped
+    @ScaledMetric(relativeTo: .body) private var sectionHeight: CGFloat = 220
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             SectionHeaderView(title: section.title) {
                 Image(systemName: "chevron.forward")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 12, height: 12)
+                    .font(.chipLabel)
                     .foregroundStyle(Color.labelPrimary)
             }
 
@@ -37,7 +36,7 @@ struct HorizontalCarouselSectionView: View {
                     .padding(.horizontal, 16)
                 }
             }
-            .frame(height: 220)
+            .frame(height: sectionHeight)
         }
     }
 }
