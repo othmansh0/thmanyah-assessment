@@ -33,7 +33,7 @@ extension SectionDTO: Decodable {
         name = try container.decode(String.self, forKey: .name)
         type = try container.decode(String.self, forKey: .type)
         contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
-        order = try container.decode(Int.self, forKey: .order)
+        order = try container.decodeIntOrString(forKey: .order)
 
         switch contentType {
         case "podcast":
@@ -49,7 +49,10 @@ extension SectionDTO: Decodable {
             let dtos = try container.decode([AudioArticleDTO].self, forKey: .content)
             items = dtos.map { .audioArticle($0) }
         default:
-            items = []
+            #warning("MOCK: content_type fallback to podcast — remove when real Search API ships")
+            //Search mock returns unrecognised content_type so content is podcast-shaped
+            items = (try? container.decode([PodcastDTO].self, forKey: .content))?
+                .map { .podcast($0) } ?? []
         }
     }
 }

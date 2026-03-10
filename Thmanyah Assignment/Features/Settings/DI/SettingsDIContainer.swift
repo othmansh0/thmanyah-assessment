@@ -5,7 +5,12 @@
 //  Created by Othman Shahrouri on 07/03/2026.
 //
 
+import Foundation
+
 struct SettingsDIContainer {
-    // Populated with dependencies as the Settings feature grows.
-    // e.g. let appearanceService: AppearanceServiceProtocol
+    let userDefaults: UserDefaults
+
+    init(userDefaults: UserDefaults = .standard) {
+        self.userDefaults = userDefaults
+    }
 }

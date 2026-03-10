@@ -24,6 +24,7 @@ private enum QueueSectionLayout {
 
 struct QueueSectionView: View {
     let section: ContentSectionDisplayModel
+    @Environment(\.contentItemTapped) private var onItemTapped
 
     @State private var currentIndex = 0
 
@@ -36,27 +37,39 @@ struct QueueSectionView: View {
         VStack(alignment: .leading, spacing: 12) {
             SectionHeaderView(title: section.title) {
                 Image(systemName: "chevron.forward")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 12, height: 12)
+                    .font(.chipLabel)
                     .foregroundStyle(Color.labelPrimary)
             }
 
-            HStack(spacing: QueueSectionLayout.sectionSpacing) {
-                cardDeckRegion
-                    .frame(width: QueueSectionLayout.cardDeckWidth, alignment: .trailing)
-                    .padding(.leading, QueueSectionLayout.contentPadding)
+            queueContent
+                .padding(QueueSectionLayout.contentPadding)
+                .frame(height: QueueSectionLayout.containerHeight)
+                .background(
+                    Color.profileCardBackground,
+                    in: RoundedRectangle(cornerRadius: QueueSectionLayout.containerCornerRadius)
+                )
+                .padding(.horizontal, QueueSectionLayout.outerHorizontalPadding)
+        }
+    }
 
-                episodeInfoRegion
-                    .frame(maxWidth: .infinity)
-            }
-            .padding(QueueSectionLayout.contentPadding)
-            .frame(height: QueueSectionLayout.containerHeight)
-            .background(
-                Color.profileCardBackground,
-                in: RoundedRectangle(cornerRadius: QueueSectionLayout.containerCornerRadius)
-            )
-            .padding(.horizontal, QueueSectionLayout.outerHorizontalPadding)
+    @ViewBuilder
+    private var queueContent: some View {
+        if let onItemTapped, let entry = currentEntry {
+            Button { onItemTapped(entry) } label: { queueContentRegion }
+                .buttonStyle(.plain)
+        } else {
+            queueContentRegion
+        }
+    }
+
+    private var queueContentRegion: some View {
+        HStack(spacing: QueueSectionLayout.sectionSpacing) {
+            cardDeckRegion
+                .frame(width: QueueSectionLayout.cardDeckWidth, alignment: .trailing)
+                .padding(.leading, QueueSectionLayout.contentPadding)
+
+            episodeInfoRegion
+                .frame(maxWidth: .infinity)
         }
     }
 
@@ -68,7 +81,7 @@ struct QueueSectionView: View {
                         .fill(Color.backgroundAccented)
                         .overlay(
                             Image(systemName: "headphones")
-                                .font(.system(size: 28))
+                                .font(.iconLarge)
                                 .foregroundStyle(Color.iconPrimary.opacity(0.4))
                         )
                 }
@@ -118,7 +131,7 @@ struct QueueSectionView: View {
     private var playButton: some View {
         Button(action: {}) {
             Image(systemName: "play.fill")
-                .font(.system(size: 13, weight: .bold))
+                .font(.iconMedium)
                 .foregroundStyle(.white)
                 .frame(
                     width: QueueSectionLayout.playButtonSize,

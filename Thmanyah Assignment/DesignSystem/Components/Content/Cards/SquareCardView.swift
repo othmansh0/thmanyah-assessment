@@ -10,6 +10,7 @@ import Kingfisher
 
 struct SquareCardView: View {
     let item: ContentSectionItemDisplayModel
+    var onTap: (() -> Void)?
 
     private let cardSize: CGFloat = 160
     @ScaledMetric(relativeTo: .subheadline) private var titleHeight: CGFloat = 36
@@ -23,11 +24,42 @@ struct SquareCardView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            imageSection
-            bottomContentSection
+            primaryTappableContent
+            bottomMetadataRow
         }
         .frame(width: cardSize)
+    }
 
+    @ViewBuilder
+    private var primaryTappableContent: some View {
+        if let onTap {
+            Button(action: onTap) { primaryContent }
+                .buttonStyle(.plain)
+        } else {
+            primaryContent
+        }
+    }
+
+    private var primaryContent: some View {
+        VStack(alignment: .leading, spacing: contentSpacing) {
+            imageSection
+            titleLabel
+        }
+    }
+
+    private var bottomMetadataRow: some View {
+        HStack(spacing: 8) {
+            playButtonPill
+            if !secondaryText.isEmpty {
+                if let onTap {
+                    Button(action: onTap) { secondaryTextLabel }
+                        .buttonStyle(.plain)
+                } else {
+                    secondaryTextLabel
+                }
+            }
+            Spacer()
+        }
     }
 
     private var imageSection: some View {
@@ -38,32 +70,11 @@ struct SquareCardView: View {
             .clipShape(.rect(cornerRadius: 12))
     }
 
-    @ViewBuilder
-    private var bottomContentSection: some View {
-        VStack(alignment: .leading, spacing: contentSpacing) {
-            titleLabel
-            bottomMetadataRow
-        }
-    }
-
     private var titleLabel: some View {
         Text(item.title)
             .font(.cardTitle)
             .foregroundStyle(Color.labelPrimary)
             .lineLimit(1)
-          
-    }
-
-    @ViewBuilder
-    private var bottomMetadataRow: some View {
-        HStack(spacing: 8) {
-            playButtonPill
-
-            if !secondaryText.isEmpty {
-                secondaryTextLabel
-            }
-            Spacer(minLength: 8)
-        }
     }
 
     private var secondaryTextLabel: some View {
@@ -74,12 +85,10 @@ struct SquareCardView: View {
     }
 
     private var playButtonPill: some View {
-        Button {
-
-        } label: {
+        Button {} label: {
             HStack(spacing: 6) {
                 Image(systemName: "play.fill")
-                    .font(.system(size: 12, weight: .medium))
+                    .font(.captionMedium)
                 Text(item.durationText)
                     .font(.captionMedium)
                     .fixedSize()

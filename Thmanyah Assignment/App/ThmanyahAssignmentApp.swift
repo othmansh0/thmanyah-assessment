@@ -20,15 +20,11 @@ struct ThmanyahAssignmentApp: App {
     }
 
     private func restoreUserInterfaceStyle() {
-        let rawValue = UserDefaults.standard.integer(forKey: "userInterfaceStyle")
-        guard let style = UIUserInterfaceStyle(rawValue: rawValue) else { return }
-        setUserInterfaceStyle(style)
-    }
-
-    private func setUserInterfaceStyle(_ style: UIUserInterfaceStyle) {
+        let rawValue = UserDefaults.standard.integer(forKey: "app_appearance_mode")
+        let mode = AppearanceMode(rawValue: rawValue) ?? .system
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         for window in windowScene.windows {
-            window.overrideUserInterfaceStyle = style
+            window.overrideUserInterfaceStyle = mode.userInterfaceStyle
         }
     }
 }

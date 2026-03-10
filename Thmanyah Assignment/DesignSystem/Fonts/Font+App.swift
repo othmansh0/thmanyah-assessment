@@ -23,4 +23,8 @@ extension Font {
     static var captionSemiBold: Font { appFont(.captionSemiBold) }
     static var chipLabel: Font { appFont(.chipLabel) }
     static var buttonLabel: Font { appFont(.buttonLabel) }
+    static var iconSmall: Font { appFont(.iconSmall) }
+    static var iconMedium: Font { appFont(.iconMedium) }
+    static var iconLarge: Font { appFont(.iconLarge) }
+    static var iconXLarge: Font { appFont(.iconXLarge) }
 }

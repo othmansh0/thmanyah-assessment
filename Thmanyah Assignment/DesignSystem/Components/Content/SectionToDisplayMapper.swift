@@ -47,7 +47,7 @@ struct SectionToDisplayMapper {
         }
     }
 
-    private func mapItem(
+    func mapItem(
         _ item: ContentItem,
         sectionID: ContentSectionDisplayID,
         itemIndex: Int
@@ -66,6 +66,8 @@ struct SectionToDisplayMapper {
             )
             return ContentSectionItemDisplayModel(
                 id: itemID,
+                domainId: podcast.id,
+                destinationType: .podcast,
                 title: podcast.title,
                 imageURL: podcast.imageURL,
                 durationText: podcast.duration.formattedDuration,
@@ -79,6 +81,8 @@ struct SectionToDisplayMapper {
             let duration = episode.duration.formattedDuration
             return ContentSectionItemDisplayModel(
                 id: itemID,
+                domainId: episode.id,
+                destinationType: .episode,
                 title: episode.title,
                 imageURL: episode.imageURL,
                 durationText: duration,
@@ -92,6 +96,8 @@ struct SectionToDisplayMapper {
             let duration = audioBook.duration.formattedDuration
             return ContentSectionItemDisplayModel(
                 id: itemID,
+                domainId: audioBook.id,
+                destinationType: .audioBook,
                 title: audioBook.title,
                 imageURL: audioBook.imageURL,
                 durationText: duration,
@@ -105,6 +111,8 @@ struct SectionToDisplayMapper {
             let duration = article.duration.formattedDuration
             return ContentSectionItemDisplayModel(
                 id: itemID,
+                domainId: article.id,
+                destinationType: .article,
                 title: article.title,
                 imageURL: article.imageURL,
                 durationText: duration,

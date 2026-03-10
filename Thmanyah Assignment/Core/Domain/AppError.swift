@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AppError: LocalizedError {
+enum AppError: LocalizedError, Equatable {
     case networkFailure
     case decodingFailure
     case unknown

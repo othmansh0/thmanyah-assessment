@@ -22,27 +22,4 @@ struct HomeRepository: HomeRepositoryProtocol {
             throw mapToAppError(error)
         }
     }
-
-    private func mapToAppError(_ error: Error) -> AppError {
-        if let appError = error as? AppError {
-            return appError
-        }
-
-        if let networkError = error as? NetworkError {
-            switch networkError {
-            case .networkFailure, .invalidURL, .noData:
-                return .networkFailure
-            case .decodingFailed:
-                return .decodingFailure
-            case .serverError:
-                return .unknown
-            }
-        }
-
-        if error is DecodingError {
-            return .decodingFailure
-        }
-
-        return .unknown
-    }
 }

@@ -10,14 +10,30 @@
 		12D24BBB2F5A962900CC80F1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 12D24A012F5A5C4500CC80F1 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AA0000012F5B000100AA00F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12D249E02F5A5C4500CC80F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12D249E72F5A5C4500CC80F1;
+			remoteInfo = "Thmanyah Assignment";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		12D249E82F5A5C4500CC80F1 /* Thmanyah Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Thmanyah Assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000022F5B000100AA00F2 /* Thmanyah AssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Thmanyah AssignmentTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		12D249EA2F5A5C4500CC80F1 /* Thmanyah Assignment */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Thmanyah Assignment";
+			sourceTree = "<group>";
+		};
+		AA0000032F5B000100AA00F3 /* Thmanyah AssignmentTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Thmanyah AssignmentTests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -31,6 +47,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA0000042F5B000100AA00F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -38,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				12D249EA2F5A5C4500CC80F1 /* Thmanyah Assignment */,
+				AA0000032F5B000100AA00F3 /* Thmanyah AssignmentTests */,
 				12D249E92F5A5C4500CC80F1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				12D249E82F5A5C4500CC80F1 /* Thmanyah Assignment.app */,
+				AA0000022F5B000100AA00F2 /* Thmanyah AssignmentTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,6 +101,27 @@
 			productReference = 12D249E82F5A5C4500CC80F1 /* Thmanyah Assignment.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AA0000052F5B000100AA00F5 /* Thmanyah AssignmentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000062F5B000100AA00F6 /* Build configuration list for PBXNativeTarget "Thmanyah AssignmentTests" */;
+			buildPhases = (
+				AA0000072F5B000100AA00F7 /* Sources */,
+				AA0000042F5B000100AA00F4 /* Frameworks */,
+				AA0000082F5B000100AA00F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000092F5B000100AA00F9 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000032F5B000100AA00F3 /* Thmanyah AssignmentTests */,
+			);
+			name = "Thmanyah AssignmentTests";
+			productName = "Thmanyah AssignmentTests";
+			productReference = AA0000022F5B000100AA00F2 /* Thmanyah AssignmentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -88,6 +134,10 @@
 				TargetAttributes = {
 					12D249E72F5A5C4500CC80F1 = {
 						CreatedOnToolsVersion = 26.2;
+					};
+					AA0000052F5B000100AA00F5 = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 12D249E72F5A5C4500CC80F1;
 					};
 				};
 			};
@@ -110,12 +160,20 @@
 			projectRoot = "";
 			targets = (
 				12D249E72F5A5C4500CC80F1 /* Thmanyah Assignment */,
+				AA0000052F5B000100AA00F5 /* Thmanyah AssignmentTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		12D249E62F5A5C4500CC80F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000082F5B000100AA00F8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -132,7 +190,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA0000072F5B000100AA00F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA0000092F5B000100AA00F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12D249E72F5A5C4500CC80F1 /* Thmanyah Assignment */;
+			targetProxy = AA0000012F5B000100AA00F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		12D249F12F5A5C4500CC80F1 /* Debug */ = {
@@ -256,6 +329,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3797M245X7;
@@ -270,8 +344,9 @@
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = NO;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -301,6 +376,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3797M245X7;
@@ -315,8 +391,9 @@
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = NO;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -341,6 +418,50 @@
 			};
 			name = Release;
 		};
+		AA000010AF5B000100AA0010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3797M245X7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.othmanshahrouri.Thmanyah-AssignmentTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Thmanyah Assignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Thmanyah Assignment";
+			};
+			name = Debug;
+		};
+		AA000011AF5B000100AA0011 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3797M245X7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.othmanshahrouri.Thmanyah-AssignmentTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Thmanyah Assignment.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Thmanyah Assignment";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -358,6 +479,15 @@
 			buildConfigurations = (
 				12D249F42F5A5C4500CC80F1 /* Debug */,
 				12D249F52F5A5C4500CC80F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA0000062F5B000100AA00F6 /* Build configuration list for PBXNativeTarget "Thmanyah AssignmentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA000010AF5B000100AA0010 /* Debug */,
+				AA000011AF5B000100AA0011 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

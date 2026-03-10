@@ -26,9 +26,8 @@ extension UIFont {
     static var captionMedium: UIFont { appFont(.captionMedium) }
     static var chipLabel: UIFont { appFont(.chipLabel) }
     static var buttonLabel: UIFont { appFont(.buttonLabel) }
-    static var tabBarItem: UIFont { appFont(.tabBarItem) }
-    static var settingsRow: UIFont { appFont(.settingsRow) }
-    static var settingsHeader: UIFont { appFont(.settingsHeader) }
+    static var settingsSectionTitle: UIFont { appFont(.settingsSectionTitle) }
+    static var settingsCellTitle: UIFont { appFont(.settingsCellTitle) }
 }
 
 private extension Font.TextStyle {

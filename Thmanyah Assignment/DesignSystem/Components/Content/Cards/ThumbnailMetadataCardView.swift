@@ -10,17 +10,36 @@ import Kingfisher
 
 struct ThumbnailMetadataCardView: View {
     let item: ContentSectionItemDisplayModel
+    var onTap: (() -> Void)?
 
-    private let thumbnailSize: CGFloat = 90
+    @ScaledMetric(relativeTo: .body) private var thumbnailSize: CGFloat = 90
     @ScaledMetric(relativeTo: .caption) private var pillPaddingH: CGFloat = 8
     @ScaledMetric(relativeTo: .caption) private var pillPaddingV: CGFloat = 4
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            thumbnailImage
-            metadataContent
+            primaryContent
+            Spacer(minLength: 0)
+            secondaryActions
         }
         .padding(.vertical, 12)
+    }
+
+    @ViewBuilder
+    private var primaryContent: some View {
+        if let onTap {
+            Button(action: onTap) { primaryContentCore }
+                .buttonStyle(.plain)
+        } else {
+            primaryContentCore
+        }
+    }
+
+    private var primaryContentCore: some View {
+        HStack(alignment: .top, spacing: 12) {
+            thumbnailImage
+            textContent
+        }
     }
 
     private var thumbnailImage: some View {
@@ -32,7 +51,7 @@ struct ThumbnailMetadataCardView: View {
             .clipShape(.rect(cornerRadius: 8))
     }
 
-    private var metadataContent: some View {
+    private var textContent: some View {
         VStack(alignment: .leading, spacing: 4) {
             if let date = item.releaseDateText {
                 Text(date)
@@ -47,10 +66,33 @@ struct ThumbnailMetadataCardView: View {
 
             Spacer(minLength: 16)
 
-            HStack(alignment: .center) {
-                durationPill
-                Spacer(minLength: 0)
-                actionButtons
+            durationPill
+        }
+    }
+
+    private var secondaryActions: some View {
+        VStack {
+            Spacer()
+            HStack(spacing: 16) {
+                Button {} label: {
+                    Image(systemName: "ellipsis")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                        .foregroundStyle(Color.iconPrimary)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(String(localized: "accessibility_more_options"))
+
+                Button {} label: {
+                    Image(systemName: "text.badge.plus")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                        .foregroundStyle(Color.iconPrimary)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(String(localized: "accessibility_play_queue"))
             }
         }
     }
@@ -59,7 +101,7 @@ struct ThumbnailMetadataCardView: View {
         Button {} label: {
             HStack(spacing: 4) {
                 Image(systemName: "play.fill")
-                    .font(.system(size: 9, weight: .bold))
+                    .font(.iconSmall)
                 Text(item.durationText)
                     .font(.captionMedium)
                     .fixedSize()
@@ -71,29 +113,5 @@ struct ThumbnailMetadataCardView: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel(String(format: String(localized: "accessibility_play_duration"), item.durationText))
-    }
-
-    private var actionButtons: some View {
-        HStack(spacing: 16) {
-            Button {} label: {
-                Image(systemName: "ellipsis")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                    .foregroundStyle(Color.iconPrimary)
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel(String(localized: "accessibility_more_options"))
-
-            Button {} label: {
-                Image(systemName: "text.badge.plus")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                    .foregroundStyle(Color.iconPrimary)
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel(String(localized: "accessibility_play_queue"))
-        }
     }
 }
